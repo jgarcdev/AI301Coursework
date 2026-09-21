@@ -1,0 +1,159 @@
+{
+  "id": "calib-04",
+  "calibration": true,
+  "source": "sharkdp/bat#1341",
+  "captured": "2026-08-05",
+  "repo_facts": {
+    "raw_markdown": "- repo: sharkdp/bat (60095 stars, archived: no)\n- description: A cat(1) clone with wings.\n- last push to any branch: 2026-08-01\n- latest release: v0.26.1 (2025-12-02)\n- open issues + PRs: 421\n- last 5 default-branch commits:\n  - 2026-08-01 by auto-merge-dependabot-prs[bot]: Merge pull request #3874 from sharkdp/dependabot/cargo/minus-5.7.2\n  - 2026-08-01 by dependabot[bot]: build(deps): bump minus from 5.7.1 to 5.7.2\n  - 2026-08-01 by auto-merge-dependabot-prs[bot]: Merge pull request #3869 from sharkdp/dependabot/cargo/gix-0.86.0\n  - 2026-08-01 by dependabot[bot]: build(deps): bump gix from 0.85.0 to 0.86.0\n  - 2026-08-01 by auto-merge-dependabot-prs[bot]: Merge pull request #3871 from sharkdp/dependabot/cargo/terminal-colorsaurus-1.0.3\n- maintainer first-response sample (5 recently updated issues, days to first owner/member/collaborator comment):\n  - #3371 (opened 2025-08-08): no maintainer comment in thread\n  - #3878 (opened 2026-08-03): no maintainer comment in thread\n  - #3866 (opened 2026-08-01): no maintainer comment in thread\n  - #1948 (opened 2021-11-17): 5.5 days\n  - #2455 (opened 2023-01-21): 0.0 days\n- contribution policy (CONTRIBUTING.md): no statement on AI or contribution tooling\n- this issue: assignees: none; linked PRs: none formally linked (PR #3617 is referenced in the comment thread)",
+    "assignees": [],
+    "linked_prs": []
+  },
+  "issue": {
+    "title": "Custom fallback syntax opt-in",
+    "number": 1341,
+    "author": "mckellygit",
+    "author_association": "NONE",
+    "opened": "2020-10-24",
+    "state": "open",
+    "labels": [
+      "feature-request",
+      "good first issue"
+    ],
+    "body_markdown": "Hi,\nThank you for bat, it is awesome (and so is fd!)\nIs there a way to have a fallback syntax ?\nI don't want to force a new syntax for known file types, I just want to set it to something reasonable for files that did not match any known type.\nthx,\n-m"
+  },
+  "comments_total": 23,
+  "comments": [
+    {
+      "author": "sharkdp",
+      "author_association": "OWNER",
+      "date": "2020-10-24",
+      "body_markdown": "Thank you for the feedback.\n\n>  Is there a way to have a fallback syntax ?\n\nThere is no way to do this currently (maybe by overwriting the `plaintext` syntax..).\n\n>  I don't want to force a new syntax for known file types, I just want to set it to something reasonable for files that did not match any known type.\n\nWhat would \"something reasonable\" be?"
+    },
+    {
+      "author": "mckellygit",
+      "author_association": "NONE",
+      "date": "2020-10-24",
+      "body_markdown": "@sharkdp I agree what makes a good fallback syntax is just my opinion, but it could be set to whatever a user wants, including none.  I prefer some color to none though.  For me, I would probably try bash as a fallback.\nI'll look into plaintext.\nthx,\n-m"
+    },
+    {
+      "author": "mckellygit",
+      "author_association": "NONE",
+      "date": "2020-10-24",
+      "body_markdown": "*I think* I have it working ok (for me) with a hacked sublime bash syntax file added as plaintext.\nthx so much,\n-m"
+    },
+    {
+      "author": "sharkdp",
+      "author_association": "OWNER",
+      "date": "2020-10-25",
+      "body_markdown": "Glad that worked :+1: \n\nI am not sure if this is something that should be added in a more official manner. I'm inclined to say no, though. It seems to me that most users would be irritated by the potentially wrong highlighting.\n\nI'm therefore closing the issue for now, but let me know if someone feels otherwise."
+    },
+    {
+      "author": "wommel",
+      "author_association": "NONE",
+      "date": "2021-01-16",
+      "body_markdown": "I think it would be helpfull to have some basic highlighting for unsupported languages.\n\nNano in this case (besides some \"Nano\"  shenanigans) highlights everthing that starts with `#` as a commtent. This is basicaly correct for any kind of text based config file i could find which is neither json nor xml. This is a great help to at least conceive the basic structure of a foreign config file or quickly see the important parts of a known one."
+    },
+    {
+      "author": "mmcnl",
+      "author_association": "NONE",
+      "date": "2022-02-12",
+      "body_markdown": "@mckellygit do you have your hacked plaintext syntax available somewhere? I'd be interested in trying it out. Thanks!"
+    },
+    {
+      "author": "mckellygit",
+      "author_association": "NONE",
+      "date": "2022-02-13",
+      "body_markdown": "Hi,\nI created dir: ~/.config/bat/syntaxes/sublime-plaintext-syntax\n and in this dir, I added this file: plaintext.sublime-syntax\n and in this file I added these lines at the top, after the %YAML 1.2 line:\n```\nname: Plain Text\nscope: source.shell.bash\nversion: 2\n\nextends: Packages/ShellScript/commands-builtin-shell-bash.sublime-syntax\n\nfile_extensions:\n  - txt\n\nhidden_file_extensions:\n  - .bash_aliases\n  - .bash_completions\n  - .bash_functions\n  - .bash_login\n  - .bash_logout\n  - .bash_profile\n  - .bash_variables\n  - .bashrc\n  - .profile\n  - .textmate_init\n  - .zlogin\n  - .zlogout\n  - .zprofile\n  - .zshenv\n  - .zshrc\n  - PKGBUILD  # https://jlk.fjfi.cvut.cz/arch/manpages/man/PKGBUILD.5\n  - ebuild\n  - eclass\n\nfirst_line_match: |-\n  (?x:\n    \\s*\\*\n  )\n\n```\nI forget where I found the original plaintext.sublime-syntax file but I will look again or I can attach mine here.\nthx,\n-m"
+    },
+    {
+      "author": "mckellygit",
+      "author_association": "NONE",
+      "date": "2022-02-13",
+      "body_markdown": "I think the file was from:\n```\nhttps://github.com/sublimehq/Packages/blob/master/ShellScript/Bash.sublime-syntax\n```\nso I renamed it and editted the first few lines to look like above."
+    },
+    {
+      "author": "mmcnl",
+      "author_association": "NONE",
+      "date": "2022-02-13",
+      "body_markdown": "awesome, thanks @mckellygit!"
+    },
+    {
+      "author": "mmcnl",
+      "author_association": "NONE",
+      "date": "2022-05-06",
+      "body_markdown": "@sharkdp  I am wondering if you would re-consider adding this feature as an option that requires the user to opt-in. This would be very helpful for me as a sysadmin because I frequently have the same need as mentioned above (`https://github.com/sharkdp/bat/issues/1341#issuecomment-761527586`)\n> Nano in this case ... highlights everything that starts with # as a comment. This is basically correct for any kind of text based config file i could find which is neither json nor xml. This is a great help to at least conceive the basic structure of a foreign config file or quickly see the important parts of a known one.\n\nIn terms of UX, it could be something like `--fallback-syntax=ini` which would only take effect if the current file doesn't match any other language.\n\nI did investigate the custom plaintext suggested by @mckellygit but that approach doesn't work for arbitrary/unknown file extensi\n[... truncated, 954 chars total]"
+    },
+    {
+      "author": "Enselic",
+      "author_association": "COLLABORATOR",
+      "date": "2022-05-06",
+      "body_markdown": "To me this sounds like reasonable opt-in functionality, so if someone comes up with a good solution with a good set of integration tests, I think that is something we could add. Since @sharkdp was not sure if closing was the right move, and since there seems to be more than a one-off interest in something like this, I think we should re-open this one."
+    },
+    {
+      "author": "mckellygit",
+      "author_association": "NONE",
+      "date": "2022-05-06",
+      "body_markdown": ">> but that approach doesn't work for arbitrary/unknown file extensions.\n\nIt does for me.  Not sure if I explained my config correctly, but I do get syntax highlighting on arbitrary and unknown files/extensions.\nBut of course having a builtin fallback syntax would be awesome."
+    },
+    {
+      "author": "mmcnl",
+      "author_association": "NONE",
+      "date": "2022-05-08",
+      "body_markdown": "@mckellygit I went back and tried your approach again and was able to get it to work.  🎉  Thanks again for the inspiration and instructions!\n\nIn the process, I simplified the syntax definition file to only highlight line comments and ignore all of the other bash syntax rules which, in most cases for me, were not needed (eg in `monit` config files). Most likely someone with actual sublime syntax knowledge could simplify this further.\n\nFor anyone following along, the full sequence of steps to set this up is:\n\n1. create a `~/.config/bat/syntaxes/sublime-plaintext-syntax/plaintext.sublime-syntax` file with the content below\n2. rebuild the bat cache with `bat cache --build` (I was the missing this step the first time I tried)\n\n```\n# ~/.config/bat/syntaxes/sublime-plaintext-syntax/plaintext.sublime-syntax\n\nname: Plain Text\nscope: source.shell.bash\nversion: 2\n\nfile_extensions:\n  - txt\n\nfirst_li\n[... truncated, 1238 chars total]"
+    },
+    {
+      "author": "mckellygit",
+      "author_association": "NONE",
+      "date": "2022-05-08",
+      "body_markdown": "ok, great.  I am so sorry I forgot to list the bat cache --build step."
+    },
+    {
+      "author": "BattleCh1cken",
+      "author_association": "NONE",
+      "date": "2022-09-29",
+      "body_markdown": "I'd like to work on this as my first rust contribution, is this still relevant?"
+    },
+    {
+      "author": "keith-hall",
+      "author_association": "COLLABORATOR",
+      "date": "2022-09-30",
+      "body_markdown": "Yep, still relevant :)"
+    },
+    {
+      "author": "Xavrir",
+      "author_association": "CONTRIBUTOR",
+      "date": "2026-03-07",
+      "body_markdown": "I’m working on this and plan to open a PR implementing an opt-in  flag with integration tests."
+    },
+    {
+      "author": "Xavrir",
+      "author_association": "CONTRIBUTOR",
+      "date": "2026-03-07",
+      "body_markdown": "Correction: implementing opt-in `--fallback-syntax` (fallback-only; does not override `--language`) with integration tests."
+    },
+    {
+      "author": "Xavrir",
+      "author_association": "CONTRIBUTOR",
+      "date": "2026-03-07",
+      "body_markdown": "Opened PR #3617 implementing  (alias: ) with integration tests and no behavior changes to ."
+    },
+    {
+      "author": "Xavrir",
+      "author_association": "CONTRIBUTOR",
+      "date": "2026-03-07",
+      "body_markdown": "Correction: opened PR #3617 implementing --fallback-syntax (alias: --fallback-language) with integration tests and no behavior changes to --language."
+    },
+    {
+      "author": "jgarte",
+      "author_association": "NONE",
+      "date": "2026-05-29",
+      "body_markdown": "Hi, is this issue complete?"
+    },
+    {
+      "author": "mckellygit",
+      "author_association": "NONE",
+      "date": "2026-06-11",
+      "body_markdown": "Hi,\n\nI have not tried configuring a fallback syntax and removing my custom plain-text syntax file.\nI will do that and report back.\nBut before I even test - if this means the highlighting of unknown files happens now then I'd say yes this issue is complete.\n\n-m"
+    }
+  ]
+}

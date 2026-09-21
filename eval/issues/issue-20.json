@@ -1,0 +1,23 @@
+{
+  "id": "issue-20",
+  "calibration": "false",
+  "source": "excalidraw/excalidraw#11811",
+  "captured": "2026-08-05",
+  "repo_facts": {
+    "raw_markdown": "- repo: excalidraw/excalidraw (128988 stars, archived: no)\n- description: Virtual whiteboard for sketching hand-drawn like diagrams\n- last push to any branch: 2026-08-04\n- latest release: v0.18.1 (2026-04-21)\n- open issues + PRs: 3289\n- last 5 default-branch commits:\n  - 2026-08-04 by dwelle: feat(packages/excalidraw): ViewportStatusFrame & factor out user-follow state (#11819)\n  - 2026-08-04 by yanrin13: fix(editor): initialize selectedLinearElement after pasting arrows (#11803)\n  - 2026-08-04 by dwelle: fix(editor): normalize container + bound text order on restore (#11827)\n  - 2026-08-04 by dwelle: fix(editor): include custom tools in pointer capture (#11826)\n  - 2026-08-04 by nihaarsirikonda: fix(editor): prevent crash when editing arrow with bound text (#11814)\n- maintainer first-response sample (5 recently updated issues, days to first owner/member/collaborator comment):\n  - #6669 (opened 2023-06-12): no maintainer comment in thread\n  - #11817 (opened 2026-08-04): 0.6 days\n  - #11770 (opened 2026-07-27): no maintainer comment in thread\n  - #4656 (opened 2022-01-28): 0.1 days\n  - #11825 (opened 2026-08-04): no maintainer comment in thread\n- contribution policy (CONTRIBUTING.md): no statement on AI or contribution tooling\n- this issue: assignees: none; linked PRs: none",
+    "assignees": [],
+    "linked_prs": []
+  },
+  "issue": {
+    "title": "Add company logo shape to the toolbar",
+    "number": 11811,
+    "author": "cursor[bot]",
+    "author_association": "NONE",
+    "opened": "2026-08-02",
+    "state": "open",
+    "labels": [],
+    "body_markdown": "**Before submitting**\n\n- [x] Have you checked for any open similar issues (`https://github.com/excalidraw/excalidraw/issues`)?\n- [ ] Have you checked our roadmap (`https://github.com/orgs/excalidraw/projects/3`) for similar planned features?\n\n**Is your feature request related to a problem? Please describe.**\nThere’s no quick way to drop our company logo onto a canvas as a first-class shape. Today you have to import an image each time, which is slow and easy to get inconsistent.\n\n**Describe the solution you'd like.**\nAdd a new toolbar shape that inserts a fixed company logo (SVG/image). Users should be able to place, resize, and move it like other elements, and it should export correctly.\n\nSuccess looks like: logo tool in the shapes toolbar → place/resize/move like other elements → correct export.\n\n**Describe alternatives you've considered.**\nNone identified yet (beyond manually inserting an image each time).\n\n**Additional context.**\nOut of scope for v1: custom logo upload / branding settings.\nLikely surface: `packages/excalidraw` editor (toolbar + element), possibly app wiring in `excalidraw-app` if needed.\nLogo asset TBD."
+  },
+  "comments_total": 0,
+  "comments": []
+}

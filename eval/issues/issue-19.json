@@ -1,0 +1,27 @@
+{
+  "id": "issue-19",
+  "calibration": "false",
+  "source": "zxcalc/zxlive#517",
+  "captured": "2026-08-05",
+  "repo_facts": {
+    "raw_markdown": "- repo: zxcalc/zxlive (101 stars, archived: no)\n- description: A graphical tool for the ZX calculus\n- last push to any branch: 2026-08-04\n- latest release: v1.0.0 (2026-04-29)\n- open issues + PRs: 64\n- last 5 default-branch commits:\n  - 2026-08-04 by RazinShaikh: Edge tool can draw multiple parallel edges at once (#521)\n  - 2026-08-04 by RazinShaikh: Merge pull request #554 from zxcalc/fix/package-runtime-assets\n  - 2026-08-04 by RazinShaikh: Fix resource packaging for release binaries\n  - 2026-08-04 by RazinShaikh: Merge pull request #551 from 96-LB/magic-hopf-fix\n  - 2026-08-04 by 96-LB: Update Hopf rule matching for X spiders\n- maintainer first-response sample (5 recently updated issues, days to first owner/member/collaborator comment):\n  - #555 (opened 2026-08-04 by a maintainer): no maintainer comment in thread\n  - #462 (opened 2026-03-03 by a maintainer): 25.8 days\n  - #507 (opened 2026-05-01): 0.4 days\n  - #513 (opened 2026-05-04 by a maintainer): 92.1 days\n  - #512 (opened 2026-05-04 by a maintainer): no maintainer comment in thread\n- contribution policy (CONTRIBUTING.md): no statement on AI or contribution tooling\n- this issue: assignees: none; linked PRs: none",
+    "assignees": [],
+    "linked_prs": []
+  },
+  "issue": {
+    "title": "Selecting large subgraphs in proof mode freezes the UI",
+    "number": 517,
+    "author": "RazinShaikh",
+    "author_association": "COLLABORATOR",
+    "opened": "2026-05-08",
+    "state": "open",
+    "labels": [
+      "Type: bug",
+      "Category: Proof mode",
+      "Priority: High"
+    ],
+    "body_markdown": "There are two potential causes which should be fixed:\n1. The matchers are slow for certain rewrites (quadratic instead of linear)\n2. UI update is waiting for the matching thread to finish\n\nAdditional suggestions:\n1. We should use multi-processing to use all the cores to match rewrites in parallel\n2. Only match rewrites in the categories that are not collapsed. If the category is expanded, we should run matchers for those rewrites\n3. Applying the rewrite should also happen in a separate thread"
+  },
+  "comments_total": 0,
+  "comments": []
+}

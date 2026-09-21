@@ -1,12 +1,66 @@
-Replace this file with your unit-1 eval run.
+# eval run written by run_eval.py at 2026-09-21T19:42:50Z
+# model: sonnet (pinned)
+# graded: ..\.claude\skills\issue-select
+# packages: 13 scored
+#   rubric.md  sha256:99f88be18d6383c7
+#   SKILL.md  sha256:bbb295bf984701fd
+#
+grading 20 bundle(s) with rubric.md, model sonnet, 5 worker(s)...
+  issue-02: ERROR (claude exited 1: Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+Error: Input must be provided either throug)
+  issue-03: ERROR (claude exited 1: Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+Error: Input must be provided either throug)
+  issue-04: accept
+  issue-06: accept
+  issue-05: reject
+  issue-07: accept
+  issue-09: ERROR (claude exited 1: Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+Error: Input must be provided either throug)
+  issue-10: ERROR (claude exited 1: Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+Error: Input must be provided either throug)
+  issue-01: reject
+  issue-11: accept
+  issue-08: reject
+  issue-14: ERROR (claude exited 1: Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+Error: Input must be provided either throug)
+  issue-13: reject
+  issue-18: ERROR (claude exited 1: Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+Error: Input must be provided either throug)
+  issue-12: reject
+  issue-20: ERROR (claude exited 1: Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+Error: Input must be provided either throug)
+  issue-17: reject
+  issue-16: accept
+  issue-15: reject
+  issue-19: reject
 
-Generate it with `--save-run`: the harness writes this file itself, with
-a header recording the model, the tool it graded, and a fingerprint of
-each file in the run.
+item      gold    verdict  agree  note
+issue-01  accept  reject   NO     failed: Newcomer-sized scope, Maintainer guidance on this issue (preferred)
+issue-02  reject  ERROR           claude exited 1: Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+Error: Input must be provided either throug
+issue-03  reject  ERROR           claude exited 1: Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+Error: Input must be provided either throug
+issue-04  accept  accept   yes    
+issue-05  reject  reject   yes    
+issue-06  accept  accept   yes    
+issue-07  reject  accept   NO     graded accept
+issue-08  reject  reject   yes    
+issue-09  accept  ERROR           claude exited 1: Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+Error: Input must be provided either throug
+issue-10  reject  ERROR           claude exited 1: Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+Error: Input must be provided either throug
+issue-11  accept  accept   yes    
+issue-12  reject  reject   yes    
+issue-13  reject  reject   yes    
+issue-14  accept  ERROR           claude exited 1: Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+Error: Input must be provided either throug
+issue-15  reject  reject   yes    
+issue-16  accept  accept   yes    
+issue-17  reject  reject   yes    
+issue-18  reject  ERROR           claude exited 1: Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+Error: Input must be provided either throug
+issue-19  accept  reject   NO     failed: Newcomer-sized scope, Maintainer guidance on this issue (preferred), Clear acceptance signal (preferred)
+issue-20  reject  ERROR           claude exited 1: Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+Error: Input must be provided either throug
 
-    python3 run_eval.py <your flags> --save-run eval-run.txt
-
-A partial `--limit` or `--only` run refuses to write the file, so only a
-complete run can land here. Do not hand-edit it: the story of the runs it
-took belongs in this unit's write-up, in the four fields below it:
-Run history, Issue analysis, Check rationale, and Trade-offs.
+agreement: 10/13 scored items

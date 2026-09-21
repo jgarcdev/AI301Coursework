@@ -1,0 +1,30 @@
+{
+  "captured": "2026-08-05 (issue-12: 2026-08-12)",
+  "pass_bar": 18,
+  "items": [
+    {"id": "issue-01", "source": "conda/conda#16475", "category": "clear-accept", "calibration": false, "verdict": "accept", "note": "docs task with a stated home and scope; active repo, unclaimed"},
+    {"id": "issue-02", "source": "rupa/z#349", "category": "dead-repo", "calibration": false, "verdict": "reject", "note": "clean bounded bug, but no commits or releases in over a year and an unanswered tracker"},
+    {"id": "issue-03", "source": "pylint-dev/pylint#9143", "category": "claimed", "calibration": false, "verdict": "reject", "note": "good-first-issue label, but an open linked PR and an in-progress comment"},
+    {"id": "issue-04", "source": "zxcalc/zxlive#555", "category": "clear-accept", "calibration": false, "verdict": "accept", "note": "small active repo, maintainer-filed bounded bug, unclaimed"},
+    {"id": "issue-05", "source": "sympy/sympy#28806", "category": "scope", "calibration": false, "verdict": "reject", "note": "codebase-wide type-annotation umbrella wearing a good-first-issue label"},
+    {"id": "issue-06", "source": "Itqan-community/quran-apps-directory#298", "category": "clear-accept", "calibration": false, "verdict": "accept", "note": "bounded UI bug in a small but visibly active repo; no releases, commits carry liveness"},
+    {"id": "issue-07", "source": "wting/autojump#727", "category": "dead-repo", "calibration": false, "verdict": "reject", "note": "clear reproducible bug, repo without maintainer activity since 2025"},
+    {"id": "issue-08", "source": "zulip/zulip#39794", "category": "claimed", "calibration": false, "verdict": "reject", "note": "assignee set and an open linked PR; the bot nudge does not clear the claim"},
+    {"id": "issue-09", "source": "conda/conda#7617", "category": "clear-accept", "calibration": false, "verdict": "accept", "note": "old but valid bounded feature; the 2022 claim is stale and the maintainer invited takers"},
+    {"id": "issue-10", "source": "tldr-pages/tldr#18405", "category": "scope", "calibration": false, "verdict": "reject", "note": "a self-described megaissue; a tracking list, not a change"},
+    {"id": "issue-11", "source": "zxcalc/zxlive#519", "category": "clear-accept", "calibration": false, "verdict": "accept", "note": "maintainer-filed bug with clear behavior description, unclaimed, active repo"},
+    {"id": "issue-12", "source": "bookwyrm-social/bookwyrm#1133", "category": "policy", "calibration": false, "verdict": "reject", "note": "passes every liveness, scope, and claim check; the repo's contributing docs ban AI-generated code and documentation outright"},
+    {"id": "issue-13", "source": "kubernetes/minikube#23437", "category": "claimed", "calibration": false, "verdict": "reject", "note": "hours-old good first issue with two open linked PRs already racing"},
+    {"id": "issue-14", "source": "LegalQuants/lq-ai#490", "category": "clear-accept", "calibration": false, "verdict": "accept", "note": "bounded docs cleanup, maintainer-filed, quiet but living repo"},
+    {"id": "issue-15", "source": "zulip/zulip#19589", "category": "scope", "calibration": false, "verdict": "reject", "note": "years of design debate and two abandoned PRs behind a friendly label"},
+    {"id": "issue-16", "source": "conda/conda#16487", "category": "clear-accept", "calibration": false, "verdict": "accept", "note": "well-specified output-stream bug, bounded, unclaimed"},
+    {"id": "issue-17", "source": "jarun/googler#428", "category": "dead-repo", "calibration": false, "verdict": "reject", "note": "the repo is archived; read-only is as dead as it gets"},
+    {"id": "issue-18", "source": "excalidraw/excalidraw#9656", "category": "claimed", "calibration": false, "verdict": "reject", "note": "no assignee, but open linked PRs and a stack of claim comments"},
+    {"id": "issue-19", "source": "zxcalc/zxlive#517", "category": "clear-accept", "calibration": false, "verdict": "accept", "note": "maintainer-diagnosed performance bug with named causes, unclaimed"},
+    {"id": "issue-20", "source": "excalidraw/excalidraw#11811", "category": "scope", "calibration": false, "verdict": "reject", "note": "one-line feature wish with no spec and a product decision hiding inside"},
+    {"id": "calib-01", "source": "processing/p5.js#9039", "category": "clear-accept", "calibration": true, "verdict": "accept", "note": "worksheet anchor: bounded fresh bug in an active, responsive repo"},
+    {"id": "calib-02", "source": "kubernetes/minikube#23436", "category": "claimed", "calibration": true, "verdict": "reject", "note": "worksheet anchor: assignee plus open PR, the loud reject"},
+    {"id": "calib-03", "source": "httpie/cli#1898", "category": "dead-repo", "calibration": true, "verdict": "reject", "note": "worksheet trap: textbook write-up, repo stopped shipping in 2024 and PRs pile up unreviewed"},
+    {"id": "calib-04", "source": "sharkdp/bat#1341", "category": "scope", "calibration": true, "verdict": "reject", "note": "worksheet borderline: five years of design discussion, no settled spec; defensible both ways, master rejects on spec-present"}
+  ]
+}

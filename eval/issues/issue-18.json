@@ -1,0 +1,118 @@
+{
+  "id": "issue-18",
+  "calibration": "false",
+  "source": "excalidraw/excalidraw#9656",
+  "captured": "2026-08-05",
+  "repo_facts": {
+    "raw_markdown": "- repo: excalidraw/excalidraw (128988 stars, archived: no)\n- description: Virtual whiteboard for sketching hand-drawn like diagrams\n- last push to any branch: 2026-08-04\n- latest release: v0.18.1 (2026-04-21)\n- open issues + PRs: 3289\n- last 5 default-branch commits:\n  - 2026-08-04 by dwelle: feat(packages/excalidraw): ViewportStatusFrame & factor out user-follow state (#11819)\n  - 2026-08-04 by yanrin13: fix(editor): initialize selectedLinearElement after pasting arrows (#11803)\n  - 2026-08-04 by dwelle: fix(editor): normalize container + bound text order on restore (#11827)\n  - 2026-08-04 by dwelle: fix(editor): include custom tools in pointer capture (#11826)\n  - 2026-08-04 by nihaarsirikonda: fix(editor): prevent crash when editing arrow with bound text (#11814)\n- maintainer first-response sample (5 recently updated issues, days to first owner/member/collaborator comment):\n  - #6669 (opened 2023-06-12): no maintainer comment in thread\n  - #11817 (opened 2026-08-04): 0.6 days\n  - #11770 (opened 2026-07-27): no maintainer comment in thread\n  - #4656 (opened 2022-01-28): 0.1 days\n  - #11825 (opened 2026-08-04): no maintainer comment in thread\n- contribution policy (CONTRIBUTING.md): no statement on AI or contribution tooling\n- this issue: assignees: none; linked PRs: excalidraw/excalidraw#9685 (open); excalidraw/excalidraw#10371 (open); excalidraw/excalidraw#11021 (closed); excalidraw/excalidraw#11460 (closed); excalidraw/excalidraw#11656 (open); LennyMalcolm0/excalidraw#314 (open)",
+    "assignees": [],
+    "linked_prs": [
+      {
+        "ref": "excalidraw/excalidraw#9685",
+        "state": "open"
+      },
+      {
+        "ref": "excalidraw/excalidraw#10371",
+        "state": "open"
+      },
+      {
+        "ref": "excalidraw/excalidraw#11021",
+        "state": "closed"
+      },
+      {
+        "ref": "excalidraw/excalidraw#11460",
+        "state": "closed"
+      },
+      {
+        "ref": "excalidraw/excalidraw#11656",
+        "state": "open"
+      },
+      {
+        "ref": "LennyMalcolm0/excalidraw#314",
+        "state": "open"
+      }
+    ]
+  },
+  "issue": {
+    "title": "Allow to switch into different arrow types when using \"Tab\" switcher when bound to element/s or text",
+    "number": 9656,
+    "author": "zsviczian",
+    "author_association": "COLLABORATOR",
+    "opened": "2025-06-15",
+    "state": "open",
+    "labels": [
+      "enhancement",
+      "good first issue"
+    ],
+    "body_markdown": "Is it by design that if either ends of an arrow are bound to an element the \"TAB\" shape switcher does not work?"
+  },
+  "comments_total": 11,
+  "comments": [
+    {
+      "author": "Mrazator",
+      "author_association": "MEMBER",
+      "date": "2025-06-15",
+      "body_markdown": "It is, when talking about line <-> arrow, but it might change in the future.\n\nThe issue is that currently, a line is not bindable to other shapes, so switching into a line would unbind the arrow from other shapes, which would be unexpected in most cases.\n\nSimilarly, we don't allow switching to line when arrows have a label.\n\n---\n\nSwitching between different arrow types (sharp / curved / angled) should still be possible, unclear why it wasn't added."
+    },
+    {
+      "author": "zsviczian",
+      "author_association": "COLLABORATOR",
+      "date": "2025-06-15",
+      "body_markdown": "yeah, the line I can understand. I was trying to switch between arrow types, which is possible on the element properties panel. Maybe we could not show the line option if the arrow is bound to an element."
+    },
+    {
+      "author": "dwelle",
+      "author_association": "MEMBER",
+      "date": "2025-06-16",
+      "body_markdown": "Yep, let's do this (not showing the line option)."
+    },
+    {
+      "author": "pran01",
+      "author_association": "NONE",
+      "date": "2025-06-18",
+      "body_markdown": "Hey, is anyone working on this, or can i pick this up?"
+    },
+    {
+      "author": "diljitsgit",
+      "author_association": "NONE",
+      "date": "2025-06-21",
+      "body_markdown": "Hey! Sorry for not alerting before working on the issue. This is my first open-source contribution so i just kind of solved it while understanding the codebase. Please tell me if i am doing anything wrong or can improve in any way 😅.\n\nI created the pull request: `https://github.com/excalidraw/excalidraw/pull/9685#issue-3165391309`\n\nAnd here is a video of the working:\n\n`https://github.com/user-attachments/assets/5a9ce401-1d73-4a01-9f92-233b54bbe470`"
+    },
+    {
+      "author": "levi42x",
+      "author_association": "NONE",
+      "date": "2025-08-11",
+      "body_markdown": "“Hi, I’m interested in working on this issue. Is it still open for contribution?”\nor is it solved ?"
+    },
+    {
+      "author": "vercetti322",
+      "author_association": "NONE",
+      "date": "2025-10-08",
+      "body_markdown": "Hi @dwelle, is this issue still open for contribution?"
+    },
+    {
+      "author": "magic-peach",
+      "author_association": "NONE",
+      "date": "2025-10-14",
+      "body_markdown": "Hey, I’m participating in Hacktoberfest and im new to open source! Can I work on this issue?"
+    },
+    {
+      "author": "Gotnochill",
+      "author_association": "NONE",
+      "date": "2025-10-20",
+      "body_markdown": "Greetings!\nWould like to work on this, is this open?"
+    },
+    {
+      "author": "Abhishek-Jatav",
+      "author_association": "NONE",
+      "date": "2026-07-06",
+      "body_markdown": "\"I'd like to work on this, could I get it assigned to me?\""
+    },
+    {
+      "author": "vishnukumar650",
+      "author_association": "NONE",
+      "date": "2026-08-02",
+      "body_markdown": "Hi @excalidraw team! I'd like to take up this issue to enable switching between arrow types using the Tab switcher when bound to elements (excluding the line option)."
+    }
+  ]
+}

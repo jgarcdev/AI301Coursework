@@ -1,0 +1,317 @@
+{
+  "id": "issue-05",
+  "calibration": "false",
+  "source": "sympy/sympy#28806",
+  "captured": "2026-08-05",
+  "repo_facts": {
+    "raw_markdown": "- repo: sympy/sympy (14832 stars, archived: no)\n- description: A computer algebra system written in pure Python\n- last push to any branch: 2026-08-04\n- latest release: 1.14.0 (2025-04-27)\n- open issues + PRs: 5910\n- last 5 default-branch commits:\n  - 2026-08-04 by asmeurer: Merge pull request #30204 from oscarbenjamin/pr_scipy_matrix\n  - 2026-08-03 by oscarbenjamin: fix(lambdify): use scipy sparse arrays\n  - 2026-08-03 by oscarbenjamin: fix: Use scipy sparse arrays instead of sparse matrices\n  - 2026-08-03 by moorepants: Merge pull request #29830 from moorepants/lagrange-efficiency\n  - 2026-07-31 by Upabjojr: Merge pull request #29829 from Woodman04/euler\n- maintainer first-response sample (5 recently updated issues, days to first owner/member/collaborator comment):\n  - #23858 (opened 2022-07-29): 0.5 days\n  - #23028 (opened 2022-02-06 by a maintainer): 7.4 days\n  - #30198 (opened 2026-08-03 by a maintainer): no maintainer comment in thread\n  - #30183 (opened 2026-07-31): no maintainer comment in thread\n  - #30210 (opened 2026-08-03): 0.0 days\n- contribution policy (CONTRIBUTING.md): no statement on AI or contribution tooling\n- this issue: assignees: none; linked PRs: sympy/sympy#28807 (merged); sympy/sympy#28813 (merged); sympy/sympy#28815 (open); sympy/sympy#28817 (open); sympy/sympy#28829 (closed); sympy/sympy#28832 (merged); sympy/sympy#28839 (open); sympy/sympy#28847 (closed); sympy/sympy#28875 (closed); sympy/sympy#28876 (closed); sympy/sympy#28877 (merged); sympy/sympy#28878 (merged)",
+    "assignees": [],
+    "linked_prs": [
+      {
+        "ref": "sympy/sympy#28807",
+        "state": "merged"
+      },
+      {
+        "ref": "sympy/sympy#28813",
+        "state": "merged"
+      },
+      {
+        "ref": "sympy/sympy#28815",
+        "state": "open"
+      },
+      {
+        "ref": "sympy/sympy#28817",
+        "state": "open"
+      },
+      {
+        "ref": "sympy/sympy#28829",
+        "state": "closed"
+      },
+      {
+        "ref": "sympy/sympy#28832",
+        "state": "merged"
+      },
+      {
+        "ref": "sympy/sympy#28839",
+        "state": "open"
+      },
+      {
+        "ref": "sympy/sympy#28847",
+        "state": "closed"
+      },
+      {
+        "ref": "sympy/sympy#28875",
+        "state": "closed"
+      },
+      {
+        "ref": "sympy/sympy#28876",
+        "state": "closed"
+      },
+      {
+        "ref": "sympy/sympy#28877",
+        "state": "merged"
+      },
+      {
+        "ref": "sympy/sympy#28878",
+        "state": "merged"
+      }
+    ]
+  },
+  "issue": {
+    "title": "Adding more type annotations to the codebase",
+    "number": 28806,
+    "author": "oscarbenjamin",
+    "author_association": "COLLABORATOR",
+    "opened": "2025-12-21",
+    "state": "open",
+    "labels": [
+      "Easy to Fix",
+      "good first issue",
+      "typing"
+    ],
+    "body_markdown": "There is a long discussion in gh-17945 about adding type annotations to the sympy codebase but that is more of a historical issue with many tangents. Some parts of the codebase now have type annotations and this issue is about incrementally adding more type annotations. PRs are welcome both big and small (better to start small) that add type annotations to parts of the codebase where it makes sense to do so (not necessarily anywhere in the codebase - see below).\n\nYou can see related issues and PRs under the typing label:\n`https://github.com/sympy/sympy/issues?q=label%3A%22typing%22`\n\n[PEP 484](https://peps.python.org/pep-0484/) introduced type annotations to Python but the sympy codebase predates that and so did not have type annotations when most parts were written. Over time the role of type annotations in Python has become a bit clearer and the situation is that type annotations are basically not optional for a library like SymPy especially on public interfaces. Many users of SymPy will not necessarily use type annotations much in their own code but can still benefit from type checker based tools for things like autocomplete and for checking types in their own code. You can see an examples of this in my editor:\n\n<img width=\"301\" height=\"209\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/60bf0cae-6e61-4137-b98e-4cbd82468510\" />\n\n<img width=\"286\" height=\"294\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/d776a6f8-ab95-48ca-b388-06b5d1e41abd\" />\n\n<img width=\"653\" height=\"295\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/23f82960-9dea-449a-b03c-13c1ab962f2b\" />\n\nThose are coming from the pyright type checker LSP server which is installed in my editor and can read the type annotations for Symbol, `Expr.__add__` and so on. There is also pylance which is based on pyright and is part of the standard Python setup in vscode. If working on adding type annotations to the codebase I recommend having one of these installed in your editor so that you can see the type checker running interactively. In those demonstrations I chose examples that work but it is not hard to find examples that do not work because of missing type annotations in the codebase.\n\nYou can also run the mypy type checker on the file shown above:\n```console\n$ mypy t.py\nt.py:7: note: Revealed type is \"Any\"\nSuccess: no issues found in 1 source file\n```\nHere mypy has revealed the type to be Any even though pyright understands that it is `Expr`. I'm not sure why exactly that happens in this case but it is not uncommon that pyright can understand what the type is but mypy cannot. Ideally we want both to understand what the type is but that is not always possible.\n\nIn CI type annotations are checked using the mypy type checker that you can run from the git repo with\n```console\n$ mypy sympy\n```\nNote that mypy does not check the body of functions if the function does not have a return type annotation. What that means is that mypy does not check most of the functions in the codebase but when adding type annotations you then need to resolve the type check errors that mypy throws up which in turn likely mean adding more type annotations to other functions that are called from that function and so on. It is always necessary that any PR passes under `mypy sympy` because that is the CI check. Note that pyright and mypy can have different opinions about the types sometimes and that mypy fails to understand some things that are quite important in sympy.\n\nWe can use pyright to measure how much of the codebase is covered by a type checker although the package first has to be installed:\n```console\n$ pip install .\n$ pyright --verifytypes sympy\n...\n<a million error messages ...>\n...\n\nSymbols exported by \"sympy\": 39643\n  With known type: 3474\n  With ambiguous type: 1764\n  With unknown type: 34405\n\nOther symbols referenced but not exported by \"sympy\": 10245\n  With known type: 5599\n  With ambiguous type: 236\n  With unknown type: 4410\n\nSymbols without documentation:\n  Functions without docstring: 17200\n  Functions without default param: 104\n  Classes without docstring: 1063\n\nType completeness score: 8.8%\n\nCompleted in 160.466sec\n```\nSo pyright says that the type completeness score is 8.8% which is quite low but this is a bit of an underestimate since it treats all of the test code as being public functions (maybe there is a way to configure pyright to ignore those). I don't think it makes sense to add type annotations to test code usually but i\n[... truncated, 11943 chars total]"
+  },
+  "comments_total": 106,
+  "comments": [
+    {
+      "author": "isrqh",
+      "author_association": "CONTRIBUTOR",
+      "date": "2025-12-21",
+      "body_markdown": "@oscarbenjamin , I would like to add type annotations to `sympy/ntheory/digits.py`. The file has only 3 functions with no type annotations currently. Is this a good place to start?"
+    },
+    {
+      "author": "oscarbenjamin",
+      "author_association": "COLLABORATOR",
+      "date": "2025-12-21",
+      "body_markdown": "Yes, that is a good place to start. I would also add annotations to the functions that they call from the `iterables` module and then make sure that pyright/mypy are able to infer all of the types correctly (`reveal_type`) for the variables inside the functions. The `iterables` functions will need to be generically typed like\n```python\nT = TypeVar('T')\n\ndef is_palindromic(s: Sequence[T], i: int = 0, j: int | None = None) -> bool:\n    ...\n```\n\nGive it a try and feel free to ask questions if you get stuck."
+    },
+    {
+      "author": "oscarbenjamin",
+      "author_association": "COLLABORATOR",
+      "date": "2025-12-21",
+      "body_markdown": "> make sure that pyright/mypy are able to infer all of the types correctly\n\nAn easy way to do this with pyright is to (temporarily) add a comment to the file like\n```\n# pyright: strict\n```\nThen pyright will report any unknown types as errors including functions imported from other modules."
+    },
+    {
+      "author": "isrqh",
+      "author_association": "CONTRIBUTOR",
+      "date": "2025-12-21",
+      "body_markdown": "Tested with `# pyright: strict` as suggested. while `iterables.py` shows many pre-existing errors in strict mode, the modifications made are proper.\nHere are my changes:\n```diff\ndiff --git a/sympy/ntheory/digits.py b/sympy/ntheory/digits.py\nindex 161584a143..c807dec439 100644\n--- a/sympy/ntheory/digits.py\n+++ b/sympy/ntheory/digits.py\n@@ -4,7 +4,7 @@\n from sympy.utilities.misc import as_int\n \n \n-def digits(n, b=10, digits=None):\n+def digits(n: int, b: int = 10, digits: int | None = None) -> list[int]:\n     \"\"\"\n     Return a list of the digits of ``n`` in base ``b``. The first\n     element in the list is ``b`` (or ``-b`` if ``n`` is negative).\n@@ -71,7 +71,7 @@ def digits(n, b=10, digits=None):\n         return y\n \n \n-def count_digits(n, b=10):\n+def count_digits(n: int, b: int = 10) -> defaultdict[int, int]:\n     \"\"\"\n     Return a dictionary whose keys are the digits of ``n`` in the\n     g\n[... truncated, 2267 chars total]"
+    },
+    {
+      "author": "oscarbenjamin",
+      "author_association": "COLLABORATOR",
+      "date": "2025-12-21",
+      "body_markdown": "Looks good to me. Feel free to open a PR that links back to this issue but don't say \"fixes\" and instead put something like:\n```\nIssue: `https://github.com/sympy/sympy/issues/28806`\n```"
+    },
+    {
+      "author": "oscarbenjamin",
+      "author_association": "COLLABORATOR",
+      "date": "2025-12-21",
+      "body_markdown": "Actually the parameter type for `digits` should be `SupportsIndex` because it uses `as_int`. Possibly same for some of the other functions."
+    },
+    {
+      "author": "isrqh",
+      "author_association": "CONTRIBUTOR",
+      "date": "2025-12-21",
+      "body_markdown": "`Actually the parameter type for digits should be SupportsIndex because it uses as_int. Possibly same for some of the other functions.`\nThanks for catching that, I'll make the changes before submitting the PR."
+    },
+    {
+      "author": "isrqh",
+      "author_association": "CONTRIBUTOR",
+      "date": "2025-12-21",
+      "body_markdown": "Thanks for the feedback. I've updated the annotations to use `SupportsIndex` since these functions use `as_int()`:\n\n- `digits(n: SupportsIndex, b: int = 10, digits: int | None = None) -> list[int]`\n- `count_digits(n: SupportsIndex, b: int = 10) -> defaultdict[int, int]`\n- `is_palindromic(n: SupportsIndex, b: int = 10) -> bool`\n\nThe `iterables.py` functions use generic `Sequence[T]` which seems appropriate since they don't call `as_int()`. Let me know if those need any updates aswell!"
+    },
+    {
+      "author": "isrqh",
+      "author_association": "CONTRIBUTOR",
+      "date": "2025-12-21",
+      "body_markdown": "I've opened PR #28807 with the type annotations we discussed. Updated to use `SupportsIndex` as suggested. Please review!"
+    },
+    {
+      "author": "anshul-119",
+      "author_association": "CONTRIBUTOR",
+      "date": "2025-12-22",
+      "body_markdown": "@oscarbenjamin Hi, I’d like to start with adding type annotations to\nsympy/utilities/memoization.py(recurrence_memo and assoc_recurrence_memo).\nThey look self-contained and suitable for a small first PR.\nPlease let me know if that sounds reasonable."
+    },
+    {
+      "author": "oscarbenjamin",
+      "author_association": "COLLABORATOR",
+      "date": "2025-12-22",
+      "body_markdown": "> adding type annotations to\n> sympy/utilities/memoization.py(recurrence_memo and assoc_recurrence_memo).\n\nSounds reasonable. Go ahead and open a PR and we can discuss details there."
+    },
+    {
+      "author": "oscarbenjamin",
+      "author_association": "COLLABORATOR",
+      "date": "2025-12-22",
+      "body_markdown": "Now that gh-28807 is merged it can serve as a demonstration for how to add type annotations. A couple notes:\n\n- You need to add `from __future__ import annotations` at the top of any file that does not already have it when adding annotations to that file.\n- It is important to check carefully for the difference between types like SupportsIndex and int. Many functions in the codebase are intended for one type but will accept a wider class of types and apply some conversion to the inputs.\n- Sometimes the proper fix is actually to change the code in the function so that it correctly accepts the types it should e.g. by using a function such as `as_int`. Part of the benefit of using a type checker is that it checks when these conversions are done properly and part of adding annotations often means correcting the code.\n- When adding type annotations to one function it is usually good to add ann\n[... truncated, 1140 chars total]"
+    },
+    {
+      "author": "isrqh",
+      "author_association": "CONTRIBUTOR",
+      "date": "2025-12-22",
+      "body_markdown": "My PR #28807 just merged! And I'd like to continue with the ntheory module. \n\nI was looking at `sympy/ntheory/generate.py` - functions like `prime()`, `nextprime()`, and `prevprime()` look straightforward (all use `as_int` and take/return ints). \nGood for the next PR?"
+    },
+    {
+      "author": "oscarbenjamin",
+      "author_association": "COLLABORATOR",
+      "date": "2025-12-22",
+      "body_markdown": "I added annotations for generate.py in gh-28769 but it is probably better to separate them from the main change there though. You could copy the annotations from gh-28769 as a separate PR."
+    },
+    {
+      "author": "isrqh",
+      "author_association": "CONTRIBUTOR",
+      "date": "2025-12-22",
+      "body_markdown": "Got it, Would another file in `ntheory` be a good target, or should I look at a different module ?"
+    },
+    {
+      "author": "oscarbenjamin",
+      "author_association": "COLLABORATOR",
+      "date": "2025-12-22",
+      "body_markdown": "I think it would be useful to separate the type annotations from gh-28769 because that PR is about thread safety. If you copy the type annotations from there then it can simplify that PR making it easier to review."
+    },
+    {
+      "author": "isrqh",
+      "author_association": "CONTRIBUTOR",
+      "date": "2025-12-22",
+      "body_markdown": "Got it! I'll extract just the type annotations from gh-28769 and submit them as a separate PR. This should help simplify the thread-safety review. I'll submit soon."
+    },
+    {
+      "author": "anshul-119",
+      "author_association": "CONTRIBUTOR",
+      "date": "2025-12-22",
+      "body_markdown": "@oscarbenjamin I've opened PR #28815 with the complete type annotations. Please review!"
+    },
+    {
+      "author": "lejonck",
+      "author_association": "NONE",
+      "date": "2025-12-23",
+      "body_markdown": "Hi @oscarbenjamin — I opened PR https://github.com/sympy/sympy/pull/28817 related to this issue.\n\nIt adds type annotations in `sympy/discrete/transforms.py` (`fft/ifft`, `ntt/intt`, `fwht/ifwht`, `mobius_transform`/`inverse_mobius_transform`, plus internal type aliases). Changes are typing-only (no behavior changes).\n\nFollowing the workflow you suggested in this issue, I also verified runtime types locally with temporary `assert isinstance(...)` checks while running the test suite (not committed). If any assert had failed I would have used `pytest sympy --lf --pdb` to inspect the actual runtime type.\n\nCould you please review the PR and let me know if the type choices/signatures look reasonable?"
+    },
+    {
+      "author": "oscarbenjamin",
+      "author_association": "COLLABORATOR",
+      "date": "2025-12-24",
+      "body_markdown": "> I’m thinking of working on `sympy/<path>/<file>.py`.\n\nI'm not sure which file you are referring to."
+    },
+    {
+      "author": "oscarbenjamin",
+      "author_association": "COLLABORATOR",
+      "date": "2025-12-24",
+      "body_markdown": "> I’d like to work on adding type annotations to\n> `sympy/utilities/exceptions.py`.\n\nThat sounds reasonable to me."
+    },
+    {
+      "author": "harshitsingh2105",
+      "author_association": "NONE",
+      "date": "2025-12-24",
+      "body_markdown": "Hi @oscarbenjamin\nI’d like to contribute to this issue by adding type annotations to a small, self-contained part of the codebase.\n\nI plan to:\n- start with a limited scope (single file or a few closely related functions),\n- run mypy on `sympy` and use `pyright` (with temporary `# pyright: strict`) to validate inferred types,\n- avoid overloaded or hard-to-express APIs,\n- ensure no behavioral changes (typing-only).\n\nCould you suggest a reasonable file or module that would be a good next target?  \nHappy to adjust scope based on your feedback."
+    },
+    {
+      "author": "Revatigc",
+      "author_association": "NONE",
+      "date": "2025-12-24",
+      "body_markdown": "This task focuses on gradually improving SymPy by adding type annotations where they clearly add value. Hi I would love to contribute so can you please assign me this project"
+    },
+    {
+      "author": "oscarbenjamin",
+      "author_association": "COLLABORATOR",
+      "date": "2025-12-24",
+      "body_markdown": "> Could you suggest a reasonable file or module that would be a good next target?\n\nPart of the idea of this issue as a good first issue is that it encourages people to go and look through the codebase which is an important part of learning to contribute. Have a look around yourself and see what you can find.\n\n> can you please assign me this project\n\nWe don't generally assign issues in SymPy. Anyone can work on this."
+    },
+    {
+      "author": "vedantdusane",
+      "author_association": "CONTRIBUTOR",
+      "date": "2025-12-27",
+      "body_markdown": "Hi, I’m a beginner contributor and would like to work on this issue.\nI’m planning to start by adding type annotations to a small part of the codebase.\nPlease let me know if I can proceed."
+    },
+    {
+      "author": "oscarbenjamin",
+      "author_association": "COLLABORATOR",
+      "date": "2025-12-27",
+      "body_markdown": "> to a small part of the codebase.\n\nWhich part of the codebase?"
+    },
+    {
+      "author": "vedantdusane",
+      "author_association": "CONTRIBUTOR",
+      "date": "2025-12-27",
+      "body_markdown": "Thanks for the reply!\n\nI was planning to start with a small and contained module, for example\n`sympy/utilities/iterables.py`, by adding type annotations to a few\nsimple helper functions and updating docstrings if needed.\n\nI’ll keep the scope minimal and submit a small PR first.\nPlease let me know if this sounds good."
+    },
+    {
+      "author": "oscarbenjamin",
+      "author_association": "COLLABORATOR",
+      "date": "2025-12-27",
+      "body_markdown": "Iterables.py is a good choice to add some annotations. Some of the functions there are potentially a bit tricky though."
+    },
+    {
+      "author": "vedantdusane",
+      "author_association": "CONTRIBUTOR",
+      "date": "2025-12-27",
+      "body_markdown": "\"Thank you for the feedback! I understand that some functions in iterables.py can be tricky. I’ll start by adding type annotations to the simpler, safer functions first and make sure to carefully handle the more complex ones. I’ll share my PR once I’ve done that.\""
+    },
+    {
+      "author": "vedantdusane",
+      "author_association": "CONTRIBUTOR",
+      "date": "2025-12-28",
+      "body_markdown": "Hi, I’ve added type annotations to flatten in utilities.iterables as suggested and fixed the CI issue (trailing whitespace).\nAll checks should be passing now.\nPlease let me know if you’d like me to adjust anything or add annotations elsewhere.\nThanks!"
+    },
+    {
+      "author": "vedantdusane",
+      "author_association": "CONTRIBUTOR",
+      "date": "2025-12-29",
+      "body_markdown": "Thanks for the guidance so far. I went through utilities/misc.py and noticed that many functions are already carefully typed or are quite subtle.\n\nWould it be okay if I add annotations only to one very simple function (for example filldedent or func_name) in this PR, or would you prefer I leave this file unchanged for now?"
+    },
+    {
+      "author": "oscarbenjamin",
+      "author_association": "COLLABORATOR",
+      "date": "2025-12-29",
+      "body_markdown": "You can add annotations to only one function."
+    },
+    {
+      "author": "vedantdusane",
+      "author_association": "CONTRIBUTOR",
+      "date": "2025-12-29",
+      "body_markdown": "Sure, I’ll limit this to a single function. I’ll keep the annotation for filldedent and revert the one for func_name."
+    },
+    {
+      "author": "barbiem29",
+      "author_association": "NONE",
+      "date": "2025-12-30",
+      "body_markdown": "Hello, I am a beginner & I would like to try and start contributing to this issue by making a small focused improvement.\nI’m planning to begin by adding a simple return type annotation in sympy/core/expr.py for a method where the return value is clearly an Expr but is currently inferred poorly by type checkers.\n\n I will keep the change minimal and ensure it passes mypy sympy.\nPlease let me know if this scope sounds reasonable before I open a PR."
+    },
+    {
+      "author": "vedantdusane",
+      "author_association": "CONTRIBUTOR",
+      "date": "2025-12-30",
+      "body_markdown": "Hi, @oscarbenjamin  I’ve pushed the requested updates and the tests are passing locally.\nI noticed that the SymPy bot is still flagging a .mailmap/release-notes–related issue coming from an earlier commit message. I’m looking into fixing that and will update the PR shortly.\nPlease let me know if you’d prefer me to amend the commit or handle it in a separate PR. Thanks!"
+    },
+    {
+      "author": "oscarbenjamin",
+      "author_association": "COLLABORATOR",
+      "date": "2025-12-30",
+      "body_markdown": "> I’m planning to begin by adding a simple return type annotation in sympy/core/expr.py for a method where the return value is clearly an Expr but is currently inferred poorly by type checkers.\n\nThat sounds reasonable. Everything in expr.py should have type annotations."
+    },
+    {
+      "author": "oscarbenjamin",
+      "author_association": "COLLABORATOR",
+      "date": "2025-12-30",
+      "body_markdown": "> Please let me know if you’d prefer me to amend the commit or handle it in a separate PR.\n\nPlease comment on the PR gh-28855 rather than here. Also always include a link in the PR to the issue it is related to and whenever referring to a PR if you are commenting anywhere else include a link to the PR.\n\nYou cannot handle those things in a separate PR. That PR will not be merged if those checks do not pass."
+    },
+    {
+      "author": "vedantdusane",
+      "author_association": "CONTRIBUTOR",
+      "date": "2025-12-30",
+      "body_markdown": "Thanks for pointing that out. I understand now — I’ll make sure to comment directly on the PR, include a link to the related issue in the PR description, and always link the PR when referring to it elsewhere. I’ll also ensure all required checks pass within the same PR. Thanks for the clarification."
+    },
+    {
+      "author": "rahil-amin",
+      "author_association": "CONTRIBUTOR",
+      "date": "2025-12-30",
+      "body_markdown": "Hey @oscarbenjamin! i am trying to make my first contribution and have decided to add type annotation to `sympy/utilities/iterables.py`,is it a good first start?"
+    },
+    {
+      "author": "oscarbenjamin",
+      "author_association": "COLLABORATOR",
+      "date": "2025-12-30",
+      "body_markdown": "Yes, I have already answered before that `iterables.py` is a good place to add type annotations."
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "id": "issue-06",
+  "calibration": "false",
+  "source": "Itqan-community/quran-apps-directory#298",
+  "captured": "2026-08-05",
+  "repo_facts": {
+    "raw_markdown": "- repo: Itqan-community/quran-apps-directory (37 stars, archived: no)\n- description: \n- last push to any branch: 2026-07-31\n- latest release: none published\n- open issues + PRs: 14\n- last 5 default-branch commits:\n  - 2026-07-14 by abubakr-itqan: Merge pull request #291 from Itqan-community/feature/staging-to-main-submit-app-button-fix\n  - 2026-07-14 by abubakr-itqan: Merge pull request #290 from Itqan-community/feat/submit-app-disabled-button-style\n  - 2026-07-14 by abubakr-itqan: Submit App Button - Clarify disabled state styling\n  - 2026-07-13 by abubakr-itqan: Merge pull request #289 from Itqan-community/feature/app-submissions-simplification\n  - 2026-07-13 by abubakr-itqan: chore: trigger fresh CI checks for compliant branch name\n- maintainer first-response sample (5 recently updated issues, days to first owner/member/collaborator comment):\n  - #297 (opened 2026-08-05 by a maintainer): no maintainer comment in thread\n  - #296 (opened 2026-08-05 by a maintainer): no maintainer comment in thread\n  - #295 (opened 2026-08-05 by a maintainer): no maintainer comment in thread\n  - #294 (opened 2026-08-05 by a maintainer): no maintainer comment in thread\n  - #235 (opened 2026-02-25 by a maintainer): 0.0 days\n- contribution policy (CONTRIBUTING.md): no statement on AI or contribution tooling\n- this issue: assignees: none; linked PRs: none",
+    "assignees": [],
+    "linked_prs": []
+  },
+  "issue": {
+    "title": "QAD: Make 'Submit App' visible on desktop + functional on mobile menu",
+    "number": 298,
+    "author": "Amr-Bendary",
+    "author_association": "COLLABORATOR",
+    "opened": "2026-08-05",
+    "state": "open",
+    "labels": [
+      "bug",
+      "good first issue",
+      "help wanted",
+      "easy",
+      "high-priority"
+    ],
+    "body_markdown": "**Description**\n\nAs a desktop user, I want to see a visible 'Submit App' button on the navbar (and as a mobile user, have a functional action in the drawer) so that I can submit a new app for inclusion.\n\n**Problem**\n\nThe 'Submit App' button is hidden on desktop viewports and fails to open the submission flow on mobile viewports.\n\n**Acceptance Criteria**\n\n- [ ] 'Submit App' button is visible on desktop viewports in the navbar header.\n- [ ] Accessible in the mobile drawer menu and triggers submission modal/route.\n- [ ] Works in both Arabic (RTL) and English (LTR).\n\n**Where to start**\n\n- Look at `src/app/components/header/` and `src/app/components/mobile-menu/`."
+  },
+  "comments_total": 0,
+  "comments": []
+}

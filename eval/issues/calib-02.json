@@ -1,0 +1,39 @@
+{
+  "id": "calib-02",
+  "calibration": true,
+  "source": "kubernetes/minikube#23436",
+  "captured": "2026-08-05",
+  "repo_facts": {
+    "raw_markdown": "- repo: kubernetes/minikube (32013 stars, archived: no)\n- description: Run Kubernetes locally\n- last push to any branch: 2026-08-03\n- latest release: v1.38.1 (2026-02-19)\n- open issues + PRs: 536\n- last 5 default-branch commits:\n  - 2026-08-03 by kubernetes-prow[bot]: Merge pull request #23409 from a4abdul7/docs-wsl2-access\n  - 2026-08-02 by kubernetes-prow[bot]: Merge pull request #23424 from minikube-bot/yearly-leaderboard-fba9401\n  - 2026-08-02 by minikube-bot: Update yearly leaderboard\n  - 2026-08-01 by kubernetes-prow[bot]: Merge pull request #23408 from minikube-bot/auto_bump_nerdctl_version-09462d6\n  - 2026-08-01 by kubernetes-prow[bot]: Merge pull request #23381 from minikube-bot/gendocs\n- maintainer first-response sample (5 recently updated issues, days to first owner/member/collaborator comment):\n  - #23441 (opened 2026-08-04 by a maintainer): no maintainer comment in thread\n  - #23442 (opened 2026-08-04 by a maintainer): no maintainer comment in thread\n  - #23385 (opened 2026-07-19 by a maintainer): 0.0 days\n  - #11409 (opened 2021-05-14 by a maintainer): 124.2 days\n  - #23437 (opened 2026-08-04 by a maintainer): no maintainer comment in thread\n- contribution policy (CONTRIBUTING.md): no statement on AI or contribution tooling\n- this issue: assignees: amh1k; linked PRs: kubernetes/minikube#23440 (open)",
+    "assignees": [
+      "amh1k"
+    ],
+    "linked_prs": [
+      {
+        "ref": "kubernetes/minikube#23440",
+        "state": "open"
+      }
+    ]
+  },
+  "issue": {
+    "title": "nerdctl-bin x86_64 package references wrong version variable",
+    "number": 23436,
+    "author": "nirs",
+    "author_association": "COLLABORATOR",
+    "opened": "2026-08-04",
+    "state": "open",
+    "labels": [
+      "good first issue"
+    ],
+    "body_markdown": "## Bug\n\nIn `deploy/iso/minikube-iso/arch/x86_64/package/nerdctl-bin/nerdctl-bin.mk`, the `NERDCTL_BIN_SOURCE` line references `NERDCTL_BIN_AARCH64_VERSION` instead of `NERDCTL_BIN_VERSION`:\n\n```makefile\nNERDCTL_BIN_VERSION = 2.3.5\n...\nNERDCTL_BIN_SOURCE = nerdctl-$(NERDCTL_BIN_AARCH64_VERSION)-linux-amd64.tar.gz\n```\n\nIt should be:\n\n```makefile\nNERDCTL_BIN_SOURCE = nerdctl-$(NERDCTL_BIN_VERSION)-linux-amd64.tar.gz\n```\n\n## Impact\n\nThis currently works by accident because both architectures use the same nerdctl version, so `NERDCTL_BIN_AARCH64_VERSION` resolves correctly when both packages are configured. It would break if the versions ever diverged or if the x86_64 package were built in isolation.\n\n## Fix\n\nChange line 10 of `deploy/iso/minikube-iso/arch/x86_64/package/nerdctl-bin/nerdctl-bin.mk` from:\n\n```makefile\nNERDCTL_BIN_SOURCE = nerdctl-$(NERDCTL_BIN_AARCH64_VERSION)-linux-amd64.tar.gz\n```\n\nto:\n\n```makefile\nNERDCTL_BIN_SOURCE = nerdctl-$(NERDCTL_BIN_VERSION)-linux-amd64.tar.gz\n```"
+  },
+  "comments_total": 1,
+  "comments": [
+    {
+      "author": "amh1k",
+      "author_association": "NONE",
+      "date": "2026-08-04",
+      "body_markdown": "/assign"
+    }
+  ]
+}

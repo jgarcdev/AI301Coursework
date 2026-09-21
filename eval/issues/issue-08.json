@@ -1,0 +1,86 @@
+{
+  "id": "issue-08",
+  "calibration": "false",
+  "source": "zulip/zulip#39794",
+  "captured": "2026-08-05",
+  "repo_facts": {
+    "raw_markdown": "- repo: zulip/zulip (25604 stars, archived: no)\n- description: Zulip server and web application. Open-source team chat that helps teams stay productive and focused.\n- last push to any branch: 2026-08-04\n- latest release: 12.1 (2026-06-26)\n- open issues + PRs: 2043\n- last 5 default-branch commits:\n  - 2026-08-03 by amanagr: tornado: Report errors as JSON instead of rendering portico pages.\n  - 2026-08-03 by amanagr: test_tornado: Run the test harness with Tornado's URL configuration.\n  - 2026-08-03 by PieterCK: webhook/slack: Handle missing \"real_name\" field in UserInfo endpoint.\n  - 2026-07-29 by sathwikshetty33: webhooks/airbyte: Remove stale STREAM_NAME attribute.\n  - 2026-07-14 by sathwikshetty33: webhooks/docs: Advise collecting only necessary fixtures.\n- maintainer first-response sample (5 recently updated issues, days to first owner/member/collaborator comment):\n  - #38839 (opened 2026-04-06 by a maintainer): 91.7 days\n  - #39859 (opened 2026-07-31): 2.6 days\n- contribution policy (CONTRIBUTING.md, section \"AI use policy and guidelines\"): AI tools allowed; contributors must personally understand, test, and be able to explain every change; AI-generated PRs that appear untested or not understood are closed without review\n- this issue: assignees: piyushagarwal-55; linked PRs: zulip/zulip#39811 (open)",
+    "assignees": [
+      "piyushagarwal-55"
+    ],
+    "linked_prs": [
+      {
+        "ref": "zulip/zulip#39811",
+        "state": "open"
+      }
+    ]
+  },
+  "issue": {
+    "title": "Migrate compose and message-edit banners to the modern banner component",
+    "number": 39794,
+    "author": "Yogesh-Shivaji365",
+    "author_association": "COLLABORATOR",
+    "opened": "2026-07-21",
+    "state": "open",
+    "labels": [
+      "help wanted",
+      "good first issue",
+      "area: message-editing",
+      "in progress",
+      "area: compose (banners & validation)",
+      "area: compose"
+    ],
+    "body_markdown": "The compose box and message-edit banners still use the legacy `.main-view-banner` markup, instead of the modern banner component\n(`web/src/banners.ts`, viewable in the development environment at http://localhost:9991/devtools/banners/).\n\nBecause the legacy close button is an `<a role=\"button\" tabindex=\"0\">`, it takes focus on mouse clicks and shows a focus outline. That was worked around in #39759 with a `:focus:not(:focus-visible)` rule and a TODO pointing here; migrating would let us drop the workaround.\n\nNote that the two components use different layout systems (flexbox vs. CSS grid, different padding, line height, and close button size), so this will change how the banners look worth confirming the intended [design](https://chat.zulip.org/#narrow/channel/101-design) before implementing."
+  },
+  "comments_total": 8,
+  "comments": [
+    {
+      "author": "piyushagarwal-55",
+      "author_association": "NONE",
+      "date": "2026-07-23",
+      "body_markdown": "Hi, I would like to work on this. Before I start, I want to confirm the approach:\n\nShould this be done incrementally (one banner type at a time), or all at once?\nThe modern banners.ts component doesn't seem to support some things the legacy compose banners use — like the data-user-id / data-stream-id / data-topic-name attributes and the schedule/onboarding buttons. Should these be added to the banner component, or handled another way?\nCould you confirm the intended visual design, since the layout changes from flexbox to CSS grid?\nThanks!"
+    },
+    {
+      "author": "zulipbot",
+      "author_association": "MEMBER",
+      "date": "2026-07-23",
+      "body_markdown": "Hello @zulip/server-compose, @zulip/server-message-view members, this issue was labeled with the \"area: message-editing\", \"area: compose\" labels, so you may want to check it out!\n\n<!-- areaLabelAddition -->"
+    },
+    {
+      "author": "zulipbot",
+      "author_association": "MEMBER",
+      "date": "2026-07-23",
+      "body_markdown": "Hello @zulip/server-compose, @zulip/server-message-view members, this issue was labeled with the \"area: message-editing\", \"area: compose\" labels, so you may want to check it out!\n\n<!-- areaLabelAddition -->"
+    },
+    {
+      "author": "amanagr",
+      "author_association": "MEMBER",
+      "date": "2026-07-24",
+      "body_markdown": "> Should this be done incrementally (one banner type at a time), or all at once?\n\nYeah, that sounds fine."
+    },
+    {
+      "author": "amanagr",
+      "author_association": "MEMBER",
+      "date": "2026-07-24",
+      "body_markdown": "For the other questions, you can open a draft pull request and a design discussion along with it."
+    },
+    {
+      "author": "piyushagarwal-55",
+      "author_association": "NONE",
+      "date": "2026-07-24",
+      "body_markdown": "Opened a draft PR (#39811 (`https://github.com/zulip/zulip/pull/39811`)) for the first banner in #39794 (`https://github.com/zulip/zulip/issues/39794`) (topic_missing). Question on the rest: the remaining compose banners need data-user-id/data-stream-id/data-topic-name on the banner root and data-* on action buttons (schedule/onboarding), which the modern component doesn't support yet. Should we extend Banner/ActionButton for data attributes, or rewire the handlers? Starting with the banners that need neither."
+    },
+    {
+      "author": "amanagr",
+      "author_association": "MEMBER",
+      "date": "2026-07-24",
+      "body_markdown": "I will have spend some time to answer your question, you can do what seems right to you. If you can't determite that you can open a #frontend discussion for it and tag me there."
+    },
+    {
+      "author": "zulipbot",
+      "author_association": "MEMBER",
+      "date": "2026-08-03",
+      "body_markdown": "@piyushagarwal-55 We noticed that you have not made any updates to this issue or linked PRs for 10 days. Please comment here if you are still actively working on it. Otherwise, we'd appreciate a quick `@zulipbot abandon` comment so that someone else can claim this issue and continue from where you left off.\n\nIf we don't hear back, you will be automatically unassigned in 4 days. Thanks!\n\n<!-- inactiveWarning -->"
+    }
+  ]
+}

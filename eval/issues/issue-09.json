@@ -1,0 +1,60 @@
+{
+  "id": "issue-09",
+  "calibration": "false",
+  "source": "conda/conda#7617",
+  "captured": "2026-08-05",
+  "repo_facts": {
+    "raw_markdown": "- repo: conda/conda (7481 stars, archived: no)\n- description: A system-level, binary package and environment manager running on all major operating systems and platforms.\n- last push to any branch: 2026-08-04\n- latest release: 26.7.0 (2026-07-31)\n- open issues + PRs: 662\n- last 5 default-branch commits:\n  - 2026-08-04 by codewithdaniel1: docs: add authenticated channels guide (#16483)\n  - 2026-08-04 by danyeaw: Recipe: add conda-rattler-solver as a run dependency (#16491)\n  - 2026-08-04 by codewithdaniel1: docs: update commands concept page (#16485)\n  - 2026-08-04 by codewithdaniel1: docs: update channels concept page (#16484)\n  - 2026-08-04 by danyeaw: Docs: Fix plantuml download failures by using conda-forge (#16492)\n- maintainer first-response sample (5 recently updated issues, days to first owner/member/collaborator comment):\n  - #16275 (opened 2026-06-24 by a maintainer): 32.9 days\n  - #16493 (opened 2026-08-04): no maintainer comment in thread\n  - #16231 (opened 2026-06-15): no maintainer comment in thread\n  - #16023 (opened 2026-05-05): no maintainer comment in thread\n  - #16026 (opened 2026-05-05): no maintainer comment in thread\n- contribution policy (CONTRIBUTING.md, section \"Generative AI\"): generative AI tools welcome; you are responsible for all contributions and must review and understand AI-generated content before including it in a pull request\n- this issue: assignees: none; linked PRs: conda/conda#11627 (closed)",
+    "assignees": [],
+    "linked_prs": [
+      {
+        "ref": "conda/conda#11627",
+        "state": "closed"
+      }
+    ]
+  },
+  "issue": {
+    "title": "conda config clear option",
+    "number": 7617,
+    "author": "jakirkham",
+    "author_association": "MEMBER",
+    "opened": "2018-08-03",
+    "state": "open",
+    "labels": [
+      "type::feature",
+      "source::community",
+      "good first issue",
+      "stale::recovered",
+      "duplicate::primary",
+      "backlog"
+    ],
+    "body_markdown": "Would be great to have an option for `conda config` to `clear` a list entry of all items. For example, `conda config --clear channels` would change `condarc` like so.\n\n```yaml\n...\nchannels: []\n...\n```"
+  },
+  "comments_total": 4,
+  "comments": [
+    {
+      "author": "MesaJonathan",
+      "author_association": "NONE",
+      "date": "2022-01-20",
+      "body_markdown": "I'd like to take a swing at this as my first open-source contribution. Does it need to be assigned to me?"
+    },
+    {
+      "author": "jakirkham",
+      "author_association": "MEMBER",
+      "date": "2022-01-20",
+      "body_markdown": "Think you can just give it a try if you are interested. Thanks for looking into it Jonathan 😄"
+    },
+    {
+      "author": "github-actions[bot]",
+      "author_association": "NONE",
+      "date": "2023-01-21",
+      "body_markdown": "Hi there, thank you for your contribution!\n\nThis issue has been **automatically marked as stale** because it has not had recent activity. It will be closed automatically if no further activity occurs.\n\nIf you would like this issue to remain open please:\n\n  1. Verify that you can still reproduce the issue at hand\n  2. Comment that the issue is still reproducible and include:\n    - What OS and version you reproduced the issue on\n    - What steps you followed to reproduce the issue\n\n**NOTE:** If this issue was closed prematurely, please leave a comment.\n\nThanks!"
+    },
+    {
+      "author": "jakirkham",
+      "author_association": "MEMBER",
+      "date": "2023-01-21",
+      "body_markdown": "(bump)"
+    }
+  ]
+}

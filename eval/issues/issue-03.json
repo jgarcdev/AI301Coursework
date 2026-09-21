@@ -1,0 +1,67 @@
+{
+  "id": "issue-03",
+  "calibration": "false",
+  "source": "pylint-dev/pylint#9143",
+  "captured": "2026-08-05",
+  "repo_facts": {
+    "raw_markdown": "- repo: pylint-dev/pylint (5709 stars, archived: no)\n- description: It's not just a linter that annoys you!\n- last push to any branch: 2026-08-03\n- latest release: v4.0.6 (2026-06-14)\n- open issues + PRs: 1078\n- last 5 default-branch commits:\n  - 2026-08-03 by pre-commit-ci[bot]: [pre-commit.ci] pre-commit autoupdate (#11227)\n  - 2026-08-03 by Pierre-Sassoulas: Fix a crash on calls unpacking dicts with non-string keys\n  - 2026-08-03 by Pierre-Sassoulas: Ignore primer pragma noise caused by a new message id (#11221)\n  - 2026-08-02 by Guflly: Detect repeated attribute chains in comparison-with-itself (#11195)\n  - 2026-08-02 by davidpavlovschi: Don't emit useless-parent-delegation for uninspectable C-level parents\n- maintainer first-response sample (5 recently updated issues, days to first owner/member/collaborator comment):\n  - #11229 (opened 2026-08-04): no maintainer comment in thread\n  - #11228 (opened 2026-08-04): no maintainer comment in thread\n  - #11222 (opened 2026-08-03): no maintainer comment in thread\n  - #11175 (opened 2026-07-16): no maintainer comment in thread\n  - #11101 (opened 2026-06-11): no maintainer comment in thread\n- contribution policy (.github/CONTRIBUTING.md): no statement on AI or contribution tooling; the repo ships AGENTS.md instructions for AI coding agents\n- this issue: assignees: none; linked PRs: pylint-dev/pylint#10985 (open); pylint-dev/pylint#10987 (closed); pylint-dev/pylint#11001 (closed); pylint-dev/pylint#11003 (merged); quick123-666/pylint#1 (open); pylint-dev/pylint#11008 (closed)",
+    "assignees": [],
+    "linked_prs": [
+      {
+        "ref": "pylint-dev/pylint#10985",
+        "state": "open"
+      },
+      {
+        "ref": "pylint-dev/pylint#10987",
+        "state": "closed"
+      },
+      {
+        "ref": "pylint-dev/pylint#11001",
+        "state": "closed"
+      },
+      {
+        "ref": "pylint-dev/pylint#11003",
+        "state": "merged"
+      },
+      {
+        "ref": "quick123-666/pylint#1",
+        "state": "open"
+      },
+      {
+        "ref": "pylint-dev/pylint#11008",
+        "state": "closed"
+      }
+    ]
+  },
+  "issue": {
+    "title": "Add pylint-junit reporter class",
+    "number": 9143,
+    "author": "MarcSkovMadsen",
+    "author_association": "NONE",
+    "opened": "2023-10-12",
+    "state": "open",
+    "labels": [
+      "Enhancement ✨",
+      "Help wanted 🙏",
+      "Good first issue",
+      "Hacktoberfest",
+      "Needs PR"
+    ],
+    "body_markdown": "### Current problem\n\nI'm a user of pylint. I used to use pylint2junit. I found out it has not been working since pylint 2.15. I then found pylint-junit which seems to fix some issues in pylint2junit. But it also have had issues since pylint 2.15. pylint2junit does not seem maintained. pylint-junit seems more active.\n\nI would really like to continue to use pylint and I need junit reporting for my (Azure DevOps) pipelines.\n\n### Desired solution\n\nAdd `pylint-junit` reporter class to `pylint` to make the junit support more robust.\n\n### Additional context\n\nProposed by @Pierre-Sassoulas in `https://github.com/pylint-dev/pylint/issues/8368#issuecomment-1759674966`"
+  },
+  "comments_total": 2,
+  "comments": [
+    {
+      "author": "quick123-666",
+      "author_association": "NONE",
+      "date": "2026-05-11",
+      "body_markdown": "Working on this. The plan is to add a `PytestJUnitReporter` class following the existing reporter interface.\n\nFor reference, `pylint-junit` (`https://github.com/pylint-dev/pylint-junit`) already implements this and can serve as a reference for the XML structure."
+    },
+    {
+      "author": "DanielNoord",
+      "author_association": "COLLABORATOR",
+      "date": "2026-05-11",
+      "body_markdown": "@hamza-mobeen Can you comment in this issue so I can assign it to you?\n\nWe are **not** looking for any other contributions other than @hamza-mobeen's PR: `https://github.com/pylint-dev/pylint/pull/10985`"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "id": "calib-03",
+  "calibration": true,
+  "source": "httpie/cli#1898",
+  "captured": "2026-08-05",
+  "repo_facts": {
+    "raw_markdown": "- repo: httpie/cli (38381 stars, archived: no)\n- description: 🥧 HTTPie CLI  — modern, user-friendly command-line HTTP client for the API era. JSON support, colors, sessions, downloads, plugins & more.\n- last push to any branch: 2024-12-17\n- latest release: 3.2.4 (2024-11-01)\n- open issues + PRs: 323\n- last 5 default-branch commits:\n  - 2024-12-17 by keysmashes: Fix `https` behaviour in fish (#1611)\n  - 2024-11-01 by github-actions[bot]: [automated] Update generated content (#1607)\n  - 2024-11-01 by jkbrzt: 3.2.4\n  - 2024-11-01 by jkbrzt: Update test.yml\n  - 2024-11-01 by jkbrzt: Fix/refactor default cert loading\n- maintainer first-response sample (5 recently updated issues, days to first owner/member/collaborator comment):\n  - #1478 (opened 2023-02-09): no maintainer comment in thread\n- contribution policy (CONTRIBUTING.md): no statement on AI or contribution tooling\n- this issue: assignees: none; linked PRs: httpie/cli#1900 (open); httpie/cli#1903 (open); httpie/cli#1908 (open); httpie/cli#1911 (open); httpie/cli#1916 (open)",
+    "assignees": [],
+    "linked_prs": [
+      {
+        "ref": "httpie/cli#1900",
+        "state": "open"
+      },
+      {
+        "ref": "httpie/cli#1903",
+        "state": "open"
+      },
+      {
+        "ref": "httpie/cli#1908",
+        "state": "open"
+      },
+      {
+        "ref": "httpie/cli#1911",
+        "state": "open"
+      },
+      {
+        "ref": "httpie/cli#1916",
+        "state": "open"
+      }
+    ]
+  },
+  "issue": {
+    "title": "Bug: Windows guard in is_available() compares os.system (a function) to 'nt' — always False",
+    "number": 1898,
+    "author": "truongsontung",
+    "author_association": "NONE",
+    "opened": "2026-07-13",
+    "state": "open",
+    "labels": [],
+    "body_markdown": "## Description\n\nIn `httpie/output/ui/man_pages.py`, `is_available()` tries to short-circuit on Windows but the check is broken:\n\n`https://github.com/httpie/cli/blob/master/httpie/output/ui/man_pages.py#L21`\n\n```python\ndef is_available(program: str) -> bool:\n    if NO_MAN_PAGES or os.system == 'nt':\n        return False\n    ...\n```\n\n`os.system` is a **built-in function object**, so `os.system == 'nt'` is always `False`. The intended Windows guard never fires. The author almost certainly meant `os.name == 'nt'`.\n\n## Why it is wrong\n\n- `os.system` is `<built-in function system>`; comparing a callable to the string `'nt'` is always `False`.\n- The correct, idiomatic Windows check is `os.name == 'nt'` (or `sys.platform == 'win32'`).\n\n## Impact\n\nOn Windows the `if NO_MAN_PAGES or os.system == 'nt':` branch is dead code. The function does not short-circuit; instead it falls through to `subprocess.run(['man', '1', program])`. On a typical Windows install `man` is absent, so `FileNotFoundError` is raised and swallowed by the `except Exception: return False`, yielding the same observable result — but only by accident. If a `man` executable happens to be on `PATH` (e.g. Git Bash / WSL), HTTPie will attempt to render man pages on Windows, contrary to the intent of the guard. Also, relying on a swallowed exception for control flow is fragile.\n\n## Reproduction / verification\n\n```python\nimport os\nprint(os.system == 'nt')   # -> False (regardless of platform)\nprint(os.name == 'nt')     # -> True on Windows, 'posix' elsewhere\n```\n\n## Suggested fix\n\n```python\nimport sys\n...\ndef is_available(program: str) -> bool:\n    if NO_MAN_PAGES or sys.platform == 'win32':\n        return False\n    ...\n```\n\n(Using `sys.platform == 'win32'` is the most robust Windows detector.)\n\n## Affected version\n\nCurrent `master` (verified via `git clone --depth 1`)."
+  },
+  "comments_total": 1,
+  "comments": [
+    {
+      "author": "truongsontung",
+      "author_association": "NONE",
+      "date": "2026-07-14",
+      "body_markdown": "Follow-up: confirmed the bug — `os.system` is a built-in function object, so `os.system == 'nt'` is always `False` and the Windows short-circuit never fires (the function instead relies on a swallowed `FileNotFoundError` to return `False` by accident).\n\nThe intended guard should be a real platform check, e.g.:\n\n```python\nimport sys\n...\ndef is_available(program: str) -> bool:\n    if NO_MAN_PAGES or sys.platform == 'win32':\n        return False\n    ...\n```\n\n(`sys.platform == 'win32'` is the most robust Windows detector; `os.name == 'nt'` works too.)\n\nHappy to open a PR that (1) swaps the guard for `sys.platform == 'win32'` and (2) adds a regression test asserting `is_available() == (sys.platform == 'win32')` so this can't silently regress again. Just let me know if you'd like me to send it."
+    }
+  ]
+}

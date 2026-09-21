@@ -1,0 +1,46 @@
+{
+  "id": "issue-12",
+  "calibration": "false",
+  "source": "bookwyrm-social/bookwyrm#1133",
+  "captured": "2026-08-12",
+  "repo_facts": {
+    "raw_markdown": "- repo: bookwyrm-social/bookwyrm (2766 stars, archived: no)\n- description: Social reading and reviewing, decentralized with ActivityPub\n- last push to any branch: 2026-08-12\n- latest release: v0.9.1 (2026-07-20)\n- open issues + PRs: 412\n- last 5 default-branch commits:\n  - 2026-08-12 by Mouse Reeve: Merge pull request #4080 from PatrickChildersIT/cleaner-javascript\n  - 2026-08-11 by Patrick Childers: fix inverted hidden logic for interact event\n  - 2026-08-10 by Mouse Reeve: Merge pull request #4047 from hughrun/follow-fedi\n  - 2026-08-10 by Mouse Reeve: Merge pull request #4083 from PatrickChildersIT/avoid-embedded-style-src\n  - 2026-08-08 by Ilkka Ollakka: Merge pull request #4084 from ilkka-ollakka/fix/anubis_post_allow\n- maintainer first-response sample (5 recently updated issues, days to first owner/member/collaborator comment):\n  - #4094 (opened 2026-08-12): 0.3 days\n  - #4095 (opened 2026-08-12): no maintainer comment in thread\n  - #3638 (opened 2025-07-09): 0.5 days\n  - #3581 (opened 2025-05-20): 447.5 days\n  - #4093 (opened 2026-08-10 by a maintainer): no maintainer comment in thread\n- contribution policy (CONTRIBUTING.md -> docs.joinbookwyrm.com/contributing.html, section \"Generative AI\"): \"Meaningful human interaction is the whole point of BookWyrm. We do not accept AI-generated code or documentation. If you are unsure how something in BookWyrm works, please ask for help – we are keen to help other humans to understand and contribute to the project.\"\n- this issue: assignees: none; linked PRs: none",
+    "assignees": [],
+    "linked_prs": []
+  },
+  "issue": {
+    "title": "Include in-progress books in the reading-goal progress-bar",
+    "number": 1133,
+    "author": "binyamin",
+    "author_association": "NONE",
+    "opened": "2021-05-24",
+    "state": "open",
+    "labels": [
+      "enhancement",
+      "good first issue",
+      "UI"
+    ],
+    "body_markdown": "> sorry for the messy issue. I'm tired :sweat_smile:\n\nInclude in-progress books in the reading-goal progress-bar\n\nFor example, if I read 1 out of 10 books, and I'm 20% done with my 2nd book, then the progress bar would be at 12% instead of 10%. It might be nice to have that \"in-progress\" portion in a different color.\n\nRelated to #56."
+  },
+  "comments_total": 3,
+  "comments": [
+    {
+      "author": "jrings",
+      "author_association": "NONE",
+      "date": "2024-09-19",
+      "body_markdown": "I've started to look at this as it seems to be a good first issue. I got the data broken out for percent finished but not complete; the issue is unless I'm missing something there are no stacked progress bars. So this is what I have so far, but it's not very useful: \n![image](https://github.com/user-attachments/assets/d6587d5d-a683-4002-b3eb-211baba5d577)\n\nI don't know much frontend stuff, is there a way to do a stacked bar?"
+    },
+    {
+      "author": "mouse-reeve",
+      "author_association": "MEMBER",
+      "date": "2024-09-19",
+      "body_markdown": "There isn't a built-in way to do a stacked bar, and I don't think the html `progress` element supports that, unfortunately. You could definitely create one with html and css (we use the bulma css library), as long as it's screen-reader accessible."
+    },
+    {
+      "author": "richardelliotweinberg",
+      "author_association": "NONE",
+      "date": "2025-05-08",
+      "body_markdown": "Can there be a percentage/progress bar for books you are currently reading. I persentage/progress bar would be great for your years reading goal too."
+    }
+  ]
+}

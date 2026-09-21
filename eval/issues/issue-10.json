@@ -1,0 +1,68 @@
+{
+  "id": "issue-10",
+  "calibration": "false",
+  "source": "tldr-pages/tldr#18405",
+  "captured": "2026-08-05",
+  "repo_facts": {
+    "raw_markdown": "- repo: tldr-pages/tldr (63303 stars, archived: no)\n- description: Collaborative cheatsheets for console commands 📚.\n- last push to any branch: 2026-08-05\n- latest release: v2.3 (2025-03-07)\n- open issues + PRs: 292\n- last 5 default-branch commits:\n  - 2026-08-05 by IMHOJEONG: helmfile, jc, jenkins, jira-*: add Korean translation (#23498)\n  - 2026-08-04 by Managor: fd: combine flags (#23494)\n  - 2026-08-04 by dependabot[bot]: build(deps): bump brace-expansion from 5.0.8 to 5.0.9 (#23499)\n  - 2026-08-04 by Managor: workflows/bot-prevention.yml: add a workflow to automatically close PRs that have modified\n[... truncated, 109 chars total]\n  - 2026-08-04 by Gauravtiwari31: httrack: add page (#23272)\n- maintainer first-response sample (5 recently updated issues, days to first owner/member/collaborator comment):\n  - #21287 (opened 2026-02-27): no maintainer comment in thread\n- contribution policy (CONTRIBUTING.md): strongly discourages generative AI for new pages (output is often inaccurate); pull requests suspected of being made wholly or partly with generative AI or machine translation without human review are closed\n- this issue: assignees: none; linked PRs: tldr-pages/tldr#18634 (closed); tldr-pages/tldr#18768 (merged); tldr-pages/tldr#18792 (merged); tldr-pages/tldr#18795 (merged)",
+    "assignees": [],
+    "linked_prs": [
+      {
+        "ref": "tldr-pages/tldr#18634",
+        "state": "closed"
+      },
+      {
+        "ref": "tldr-pages/tldr#18768",
+        "state": "merged"
+      },
+      {
+        "ref": "tldr-pages/tldr#18792",
+        "state": "merged"
+      },
+      {
+        "ref": "tldr-pages/tldr#18795",
+        "state": "merged"
+      }
+    ]
+  },
+  "issue": {
+    "title": "Documentation request megaissue",
+    "number": 18405,
+    "author": "Managor",
+    "author_association": "MEMBER",
+    "opened": "2025-10-04",
+    "state": "open",
+    "labels": [
+      "help wanted",
+      "good first issue"
+    ],
+    "body_markdown": "Some of the page request issues are buried deep within the issue tracker and would be very hard to find. This issue is for listing those so that anyone could try their hand at making pages.\n\n- #2580\n- #3953\n- #5070\n- #5103\n- #5137\n- #5211\n- #5425\n- #5426\n- #5471\n- #6141\n- #6362\n- #6367\n- #6372\n- #6376\n- #6402\n- #6431\n- #6433\n- #6452\n- #6458\n- #6464\n- #6596\n- #6609\n- #6863\n- #7151\n- #7475\n- #7664\n- #7832\n- #7878\n- #7891\n- #7923\n- #7925\n- #7963\n- #8080\n- #8093\n- #8181\n- #8187\n- #8478\n- #8491\n- #8521\n- #8524\n- #9475\n- #9612\n- #10191\n- #10584\n- #10629\n- #10877\n- #10885\n- #11431\n- #11448\n- #11536\n- #11827\n- #11874\n- #11896\n- #11901\n- #12173\n- #12299\n- #12309\n- #12366\n- #12563\n- #12925\n- #13125\n- #13997\n- #14001\n- #14172\n- #14679\n- #15448\n- #15461\n- #15485\n- #15555\n- #15591\n- #15594\n- #15619\n- #15633\n- #15696\n- #15697\n- #15752\n- #15810\n- #15913\n- #16008\n- #16175\n- #16796\n- #16827\n- #16943\n- #16962\n- #17040\n- #17084\n- #17138\n- #17495\n- #17125\n- #17160\n- #17737\n- #17782\n- #18193\n- #18255\n- #18416\n- #18895\n- #19101\n- #19268\n- #19277\n- #19693\n- #19730\n- #19825\n- #19826\n- #19922\n- #20199\n- #20379\n- #20438\n- #20542\n- #20641\n- #20739 \n- #20946\n- #21002\n- #21118\n- #21837\n- #21928\n- #21937\n- #22104\n- #22118\n- #22123\n- #22184\n- #22349\n- #22642\n- #22787\n- #23098"
+  },
+  "comments_total": 5,
+  "comments": [
+    {
+      "author": "estershuli",
+      "author_association": "NONE",
+      "date": "2026-02-12",
+      "body_markdown": "Hi, I’m a student contributor and would like to work on this issue. Please let me know if there are any specific guidelines I should follow."
+    },
+    {
+      "author": "Managor",
+      "author_association": "MEMBER",
+      "date": "2026-02-12",
+      "body_markdown": "The style guide (`https://github.com/tldr-pages/tldr/blob/main/contributing-guides/style-guide.md`) and CONTRIBUTING (`https://github.com/tldr-pages/tldr/blob/main/CONTRIBUTING.md`) are good starting points to read. However, it's possible to just submit a page and let the maintainers suggest fixes for the mistakes."
+    },
+    {
+      "author": "nithyanandharajms138-debug",
+      "author_association": "NONE",
+      "date": "2026-06-25",
+      "body_markdown": "Hi, I'm a Student contributor and would like to start my contribution from your Repo .Let me know how can I help you guys at my best, and is there any steps to contribute and for your specific repo .let me at the earliest possible."
+    },
+    {
+      "author": "SpikeTheDragon40k",
+      "author_association": "MEMBER",
+      "date": "2026-06-25",
+      "body_markdown": "> Hi, I'm a Student contributor and would like to start my contribution from your Repo .Let me know how can I help you guys at my best, and is there any steps to contribute and for your specific repo .let me at the earliest possible.\n> \n\nRefer to the contribution guidelines as stated by @managor"
+    }
+  ]
+}

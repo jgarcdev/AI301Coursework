@@ -1,0 +1,36 @@
+{
+  "id": "issue-02",
+  "calibration": "false",
+  "source": "rupa/z#349",
+  "captured": "2026-08-05",
+  "repo_facts": {
+    "raw_markdown": "- repo: rupa/z (17036 stars, archived: no)\n- description: z - jump around\n- last push to any branch: 2024-06-19\n- latest release: v1.12 (2023-12-09)\n- open issues + PRs: 107\n- last 5 default-branch commits:\n  - 2023-12-09 by jedahan: Escape calls for sed and awk in case someone aliased them (#264)\n  - 2023-12-09 by rupa: avoid issues when `date` has been aliased\n  - 2023-12-09 by rupa: avoid issues when `env` has been aliased\n  - 2021-05-31 by queensferryme: Skip excluding when `$_Z_EXCLUDE_DIRS` is empty (#302)\n  - 2021-05-26 by ericbn: Also don't match the root directory (#216)\n- maintainer first-response sample (5 recently updated issues, days to first owner/member/collaborator comment):\n  - #351 (opened 2026-05-28): no maintainer comment in thread\n  - #347 (opened 2026-01-09): no maintainer comment in thread\n  - #345 (opened 2025-06-26): no maintainer comment in thread\n  - #331 (opened 2024-04-06): no maintainer comment in thread\n  - #292 (opened 2020-08-24): no maintainer comment in thread\n- contribution policy: no CONTRIBUTING.md in the repo; no stated policy\n- this issue: assignees: none; linked PRs: none",
+    "assignees": [],
+    "linked_prs": []
+  },
+  "issue": {
+    "title": "z -x does not work correctly on macOS because of BSD sed -i syntax",
+    "number": 349,
+    "author": "sermelipharo",
+    "author_association": "NONE",
+    "opened": "2026-03-11",
+    "state": "open",
+    "labels": [],
+    "body_markdown": "On macOS, `z -x` does not correctly remove the current directory from the data file.\n\nThe implementation currently uses:\n\n```sh\nsed -i -e \"\\:^${PWD}|.*:d\" \"$datafile\"\n```\n\nThis works with GNU `sed`, but fails on macOS because BSD `sed` requires an explicit backup suffix argument for `-i`, even if it is empty:\n\n```sh\nsed -i '' -e \"\\:^${PWD}|.*:d\" \"$datafile\"\n```\n\n## Reproduction\n\nGiven a `.z` entry like:\n\n```text\n/Users/me/project|16|1773233408\n```\n\nand with the current directory set to:\n\n```sh\n/Users/me/project\n```\n\nrunning:\n\n```sh\nz -x\n```\n\ndoes not properly remove the entry on macOS.\n\n## Expected behavior\n\n`z -x` should remove the current directory from the data file on macOS as well as on GNU/Linux.\n\n## Possible fix\n\nReplace:\n\n```sh\nsed -i -e \"\\:^${PWD}|.*:d\" \"$datafile\"\n```\n\nwith something portable, or detect BSD `sed` and use:\n\n```sh\nsed -i '' -e \"\\:^${PWD}|.*:d\" \"$datafile\"\n```\n\n## Additional note\n\nIn the current implementation, `z -x` also continues execution and prints the list afterward.\nIt may be worth clarifying whether that is intended behavior or whether `-x` should return immediately after deletion."
+  },
+  "comments_total": 2,
+  "comments": [
+    {
+      "author": "Mopf-gg",
+      "author_association": "NONE",
+      "date": "2026-03-11",
+      "body_markdown": "您的邮件已收到。谢谢！"
+    },
+    {
+      "author": "jghub",
+      "author_association": "NONE",
+      "date": "2026-06-07",
+      "body_markdown": "hi, in case you care: my fork of z.sh,  `https://github.com/jghub/ze`, fixes the sed -i issue (including the erroneous drop-through to pattern matching you mention: z -x really should return immediately I agree), but its actual purpose is to\na) improve/alter the frecency algorithm\nb) make z only track/score cd navigation\n(see also `https://github.com/rupa/z/issues/351`)\n\nthe fork seems functional, uses different default naming conventions (z → ze everywhere), different db, and might be used in parallel to legacy z.sh for testing/comparison (the README has a db migration recipe, too). I would hope the two mentioned changes (monitor/track only cd actions and switch from legacy scoring approach to proper exponential moving average scoring) make behaviour overall preferable."
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "issue-07",
+  "calibration": "false",
+  "source": "wting/autojump#727",
+  "captured": "2026-08-05",
+  "repo_facts": {
+    "raw_markdown": "- repo: wting/autojump (16956 stars, archived: no)\n- description: A cd command that learns - easily navigate directories from the command line\n- last push to any branch: 2025-02-27\n- latest release: none published\n- open issues + PRs: 231\n- last 5 default-branch commits:\n  - 2023-02-01 by Komi7: fix git clone url\n  - 2025-02-10 by soerenwolfers: Update README.md\n  - 2025-02-10 by soerenwolfers: Update README.md\n  - 2025-02-10 by soerenwolfers: Update README.md\n  - 2023-08-22 by wting: Merge branch 'wting_default_python3'\n- maintainer first-response sample (5 recently updated issues, days to first owner/member/collaborator comment):\n  - #569 (opened 2019-04-14): no maintainer comment in thread\n  - #734 (opened 2026-05-29): no maintainer comment in thread\n  - #593 (opened 2019-11-22): no maintainer comment in thread\n  - #732 (opened 2026-04-30): no maintainer comment in thread\n  - #689 (opened 2023-12-09): no maintainer comment in thread\n- contribution policy: no CONTRIBUTING.md in the repo; no stated policy\n- this issue: assignees: none; linked PRs: none",
+    "assignees": [],
+    "linked_prs": []
+  },
+  "issue": {
+    "title": "Attempting to jump into a directory whose name has underscores triggers an AttributeError",
+    "number": 727,
+    "author": "jpcofr",
+    "author_association": "NONE",
+    "opened": "2026-02-28",
+    "state": "open",
+    "labels": [],
+    "body_markdown": "When attempting to use j to jump to a directory containing multiple underscores (e.g., 000_play__), autojump fails with a Python AttributeError instead of gracefully handling the search or providing a \"directory not found\" message.\n\nIt appears the get_ith_path lambda assumes that last(take(i, iterable)) will always return a valid object, but in this case, it returns None, causing the crash when accessing the .path attribute.\n\n## Steps to Reproduce\nCreate a directory with multiple underscores: mkdir -p ~/tmp/000_play__\n\nChange into that directory to add it to the autojump database: cd ~/tmp/000_play__\n\nReturn to the home directory: cd ~\n\nAttempt to jump using the underscore pattern: j 000_play__\n\n\n## Actual Behavior / Stack Trace\nThe command crashes with the following output:\n\n```bash\n[~]$ j 000_play__\nTraceback (most recent call last):\n  File \"/opt/homebrew/Cellar/autojump/22.5.3_3/libexec/bin/autojump\", line 342, in <module>\n    sys.exit(main(parse_arguments()))\n             ~~~~^^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Cellar/autojump/22.5.3_3/libexec/bin/autojump\", line 326, in main\n    get_ith_path(\n    ~~~~~~~~~~~~^\n        tab_index,\n        ^^^^^^^^^^\n        find_matches(entries, [tab_needle]),\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ),\n    ^\n  File \"/opt/homebrew/Cellar/autojump/22.5.3_3/libexec/bin/autojump\", line 324, in <lambda>\n    get_ith_path = lambda i, iterable: last(take(i, iterable)).path\n                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'path'\nautojump: directory '000_play__' not found\n```\n\nThis appears to be the same root cause as reported in #669, but specifically triggered by directory names containing underscores during jump attempts."
+  },
+  "comments_total": 0,
+  "comments": []
+}

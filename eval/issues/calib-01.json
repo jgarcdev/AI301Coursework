@@ -1,0 +1,26 @@
+{
+  "id": "calib-01",
+  "calibration": true,
+  "source": "processing/p5.js#9039",
+  "captured": "2026-08-05",
+  "repo_facts": {
+    "raw_markdown": "- repo: processing/p5.js (23844 stars, archived: no)\n- description: p5.js is a client-side JS platform that empowers artists, designers, students, and anyone to learn to code and express themselves creatively on the web. It is based on the core principles of Processin\n[... truncated, 246 chars total]\n- last push to any branch: 2026-08-04\n- latest release: v2.3.2 (2026-07-30)\n- open issues + PRs: 500\n- last 5 default-branch commits:\n  - 2026-08-04 by davepagurek: Merge pull request #8955 from Nixxx19/renderer-per-part\n  - 2026-08-04 by davepagurek: Remove default export addon\n  - 2026-08-04 by davepagurek: Merge branch 'main' into renderer-per-part\n  - 2026-08-04 by davepagurek: Merge pull request #8879 from Nixxx19/geometry-part-refactor\n  - 2026-08-04 by davepagurek: Merge branch 'main' into geometry-part-refactor\n- maintainer first-response sample (5 recently updated issues, days to first owner/member/collaborator comment):\n  - #7899 (opened 2025-06-10 by a maintainer): 79.9 days\n  - #8940 (opened 2026-06-18 by a maintainer): 4.8 days\n  - #9033 (opened 2026-08-03): no maintainer comment in thread\n  - #9037 (opened 2026-08-04): 0.2 days\n  - #9038 (opened 2026-08-04 by a maintainer): 0.0 days\n- contribution policy (CONTRIBUTING.md, section \"AI Usage Policy\"): fully AI-generated contributions are not accepted; assistive AI use is allowed, and the contributor must understand and take responsibility for every change (details in AI_USAGE_POLICY.md and AGENTS.md)\n- this issue: assignees: none; linked PRs: none",
+    "assignees": [],
+    "linked_prs": []
+  },
+  "issue": {
+    "title": "[p5.js 2.0+ Bug Report]: min/max function with variable length parametes",
+    "number": 9039,
+    "author": "TakagiHitoshi",
+    "author_association": "NONE",
+    "opened": "2026-08-04",
+    "state": "open",
+    "labels": [
+      "Area:Math",
+      "p5.js 2.0+"
+    ],
+    "body_markdown": "### Most appropriate sub-area of p5.js?\n\n- [ ] Accessibility\n- [ ] Color\n- [ ] Core/Environment/Rendering\n- [ ] Data\n- [ ] DOM\n- [ ] Events\n- [ ] Image\n- [ ] IO\n- [x] Math\n- [ ] Typography\n- [ ] Utilities\n- [ ] WebGL\n- [ ] WebGPU\n- [ ] p5.strands\n- [ ] Build process\n- [ ] Unit testing\n- [ ] Internationalization\n- [ ] Friendly errors\n- [ ] Other (specify if possible)\n\n### p5.js version\n\n2.3.2\n\n### Web browser and version\n\nchrome 150.0.7871.187\n\n### Operating system\n\nWindows 11\n\n### Steps to reproduce this\n\nThis is not an exact bug report, but a request.\nmin function accepts variable length parameters in p5js v.1, Now it says \"Expected at most 2 arguments, but received more in min().\" Would be good if compatibility would be maintained.\n\n### Steps:\n1. run a code with min(1, 2, 3, 4)\n### Snippet:\nt=0\ndraw=_=>{\ncreateCanvas(W=(w=200)*2,W)+colorMode(HSB)+noFill()\nfor(R=0;R<w;R+=18)for(T=0;T<TAU;T+=.1)\ntranslate(x=R*cos(U=T+t/41)+w,y=R*sin(U)+w),\nrotate(t/R+U),\nstroke(D=min(x,y,W-x,W-y)*2,w,w,9),\nellipse(0,0,D,D/2),\nresetMatrix()\n++t}"
+  },
+  "comments_total": 0,
+  "comments": []
+}
